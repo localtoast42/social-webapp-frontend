@@ -14,8 +14,20 @@ export async function userLoader() {
   return { user };
 }
 
-export async function feedLoader() {
+export async function homeFeedLoader() {
   const response = await fetch(`${API_URL}/posts`, { mode: "cors" });
+
+  if (response.status == 401) {
+    return redirect('/login')
+  }
+  
+  const posts = await response.json();
+
+  return { posts };
+}
+
+export async function profileFeedLoader({ params }) {
+  const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { mode: "cors" });
 
   if (response.status == 401) {
     return redirect('/login')

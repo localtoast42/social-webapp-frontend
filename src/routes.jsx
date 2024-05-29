@@ -3,8 +3,13 @@ import Home from "./Home";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
-import { userLoader, feedLoader } from "./loaders";
-import { loginAction, logoutAction } from "./actions";
+import { 
+  userLoader, 
+  homeFeedLoader,
+  profileFeedLoader } from "./loaders";
+import { 
+  loginAction, 
+  logoutAction } from "./actions";
 
 const routes = [
   {
@@ -19,7 +24,7 @@ const routes = [
           {
             index: true,
             element: <Feed />,
-            loader: feedLoader
+            loader: homeFeedLoader
           },
         ]
       },
@@ -30,7 +35,7 @@ const routes = [
           {
             index: true,
             element: <Feed />,
-            loader: feedLoader
+            loader: profileFeedLoader
           },
         ]
       },
