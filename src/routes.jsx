@@ -18,7 +18,7 @@ const routes = [
     loader: userLoader,
     children: [
       {
-        index: true,
+        path: "/home",
         element: <Home />,
         children: [
           {
@@ -39,17 +39,17 @@ const routes = [
           },
         ]
       },
-      {
-        path: "/login",
-        element: <Login />,
-        action: loginAction
-      },
-      {
-        path: "/logout",
-        action: logoutAction
-      }
     ]
   },
+  {
+    path: "/login",
+    element: <Login />,
+    action: loginAction
+  },
+  {
+    path: "/logout",
+    action: logoutAction
+  }
 ];
 
 export default routes;
