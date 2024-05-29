@@ -13,3 +13,15 @@ export async function userLoader() {
 
   return { user };
 }
+
+export async function feedLoader() {
+  const response = await fetch(`${API_URL}/posts`, { mode: "cors" });
+
+  if (response.status == 401) {
+    return redirect('/login')
+  }
+  
+  const posts = await response.json();
+
+  return { posts };
+}
