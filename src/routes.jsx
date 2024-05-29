@@ -2,6 +2,7 @@ import App from "./App";
 import Home from "./components/Home";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import UserProfile from "./components/UserProfile";
 import { 
   userLoader, 
@@ -9,7 +10,8 @@ import {
   profileFeedLoader } from "./loaders";
 import { 
   loginAction, 
-  logoutAction } from "./actions";
+  logoutAction,
+  registerAction } from "./actions";
 
 const routes = [
   {
@@ -40,6 +42,11 @@ const routes = [
         ]
       },
     ]
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    action: registerAction
   },
   {
     path: "/login",

@@ -24,3 +24,20 @@ export async function logoutAction() {
   
   return redirect('/login');
 }
+
+export async function registerAction({ request }) {
+  const formData = await request.formData();
+  const user = Object.fromEntries(formData);
+
+  const response = await fetch(`${API_URL}/users`, { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user) 
+  });
+
+  if (response.status == 201) {
+    return redirect('/login');
+  } else {
+    return redirect('/register');
+  }
+}
