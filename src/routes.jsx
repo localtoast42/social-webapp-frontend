@@ -1,5 +1,5 @@
 import App from "./App";
-import Home from "./Home";
+import Home from "./components/Home";
 import Feed from "./components/Feed";
 import Login from "./components/Login";
 import UserProfile from "./components/UserProfile";
