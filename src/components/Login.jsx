@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, NavLink } from "react-router-dom";
 
 const Login = () => {
 
@@ -11,6 +11,7 @@ const Login = () => {
           <input type="password" name="password" id="password" placeholder="Password"/>
           <button type="submit">Sign in</button>
         </Form>
+        <NavLink to="/register">Register</NavLink>
       </div>
     </div>
   );
