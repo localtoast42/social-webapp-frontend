@@ -18,7 +18,7 @@ export async function loginAction({ request }) {
   } else {
     const responseData = await response.json();
     localStorage.setItem("jwt", responseData.token);
-    return redirect('/');
+    return redirect('/home');
   }
 }
 
