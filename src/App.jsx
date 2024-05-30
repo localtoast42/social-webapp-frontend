@@ -1,4 +1,5 @@
 import './App.css';
+import { UserContext } from "./contexts/UserContext";
 import { Form, Outlet, NavLink, useLoaderData } from "react-router-dom";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <nav>
         <NavLink to="home">Home</NavLink>
+        {user && <NavLink to={`/users/${user.id}`}>My Profile</NavLink>}
         {user ? (
           <Form method="post" action="logout">
             <button>Sign out</button>
@@ -17,7 +19,9 @@ function App() {
         )}
       </nav>
       <div>
-        <Outlet />
+        <UserContext.Provider value={ user }>
+          <Outlet />
+        </UserContext.Provider>
       </div>
     </>
   )
