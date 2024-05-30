@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <nav>
-        <NavLink to="">Home</NavLink>
+        <NavLink to="home">Home</NavLink>
         {user ? (
           <Form method="post" action="logout">
             <button>Sign out</button>
