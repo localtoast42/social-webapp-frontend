@@ -8,6 +8,7 @@ export async function loginAction({ request }) {
 
   const response = await fetch(`${API_URL}/login`, { 
     method: 'POST',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user) 
   });
@@ -15,12 +16,14 @@ export async function loginAction({ request }) {
   if (response.status == 401) {
     return redirect('/login');
   } else {
+    const responseData = await response.json();
+    localStorage.setItem("jwt", responseData.token);
     return redirect('/');
   }
 }
 
 export async function logoutAction() {
-  await fetch(`${API_URL}/logout`, { method: 'POST' });
+  localStorage.removeItem("jwt");
   
   return redirect('/login');
 }

@@ -3,7 +3,12 @@ import { redirect } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function userLoader() {
-  const response = await fetch(`${API_URL}/users/self`, { mode: "cors" });
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users/self`, { 
+    mode: "cors",
+    headers: { 'Authorization': token }
+  });
 
   if (response.status == 401) {
     return redirect('/login')
@@ -15,7 +20,12 @@ export async function userLoader() {
 }
 
 export async function homeFeedLoader() {
-  const response = await fetch(`${API_URL}/posts`, { mode: "cors" });
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts`, { 
+    mode: "cors",
+    headers: { 'Authorization': token }
+  });
 
   if (response.status == 401) {
     return redirect('/login')
@@ -27,7 +37,11 @@ export async function homeFeedLoader() {
 }
 
 export async function profileFeedLoader({ params }) {
-  const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { mode: "cors" });
+  const token = localStorage.getItem("jwt");
+  const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { 
+    mode: "cors",
+    headers: { 'Authorization': token }
+  });
 
   if (response.status == 401) {
     return redirect('/login')
