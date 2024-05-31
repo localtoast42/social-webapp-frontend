@@ -41,7 +41,7 @@ export async function registerAction({ request }) {
   if (response.status == 201) {
     return redirect('/login');
   } else {
-    return redirect('/register');
+    return response;
   }
 }
 
