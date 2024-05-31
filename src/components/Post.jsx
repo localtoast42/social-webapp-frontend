@@ -9,7 +9,7 @@ function Post({ post }) {
         <div className="flex items-baseline justify-between gap-x-4">
           <p className="text-sm font-semibold leading-6 text-gray-900">{post.author}</p>
           <p className="flex-none text-xs text-gray-600">
-            <time dateTime={post.date}>{post.date}</time>
+            <time dateTime={post.dateTime}>{post.date}</time>
           </p>
         </div>
         <p className="mt-1 line-clamp-2 text-sm leading-6 text-gray-600">{post.text}</p>
