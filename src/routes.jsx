@@ -12,7 +12,8 @@ import {
 import { 
   loginAction, 
   logoutAction,
-  registerAction } from "./actions";
+  registerAction,
+  postCreateAction } from "./actions";
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const routes = [
           },
         ]
       },
+      {
+        path: "/posts/create",
+        action: postCreateAction
+      }
     ]
   },
   {

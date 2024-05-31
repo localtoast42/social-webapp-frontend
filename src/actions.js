@@ -44,3 +44,21 @@ export async function registerAction({ request }) {
     return redirect('/register');
   }
 }
+
+export async function postCreateAction({ request }) {
+  const formData = await request.formData();
+  const post = Object.fromEntries(formData);
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/`, { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+    body: JSON.stringify(post)
+  });
+
+  return response;
+}
