@@ -12,7 +12,7 @@ function Post({ post }) {
             <time dateTime={post.dateTime}>{post.date}</time>
           </p>
         </div>
-        <p className="mt-1 line-clamp-2 text-sm leading-6 text-gray-600">{post.text}</p>
+        <p className="mt-1 text-sm leading-6 text-gray-600">{post.text}</p>
       </div>
     </div>
   )
