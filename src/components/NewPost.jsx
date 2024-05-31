@@ -10,12 +10,13 @@ export default function NewPost() {
   }
 
   return (
-    <div className="min-w-0 flex-1">
+    <div className="min-w-0 flex-1 flex gap-x-4">
+      <div className="h-12 w-12"></div>
       {!isEditable && 
         <button
           type="button"
           onClick={toggleEditable}
-          className="relative block w-full max-h-[138px] rounded-lg border-2 border-dashed border-gray-300 p-8 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="relative flex-auto max-h-[138px] rounded-lg border-2 border-dashed border-gray-300 p-8 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
@@ -40,7 +41,7 @@ export default function NewPost() {
           method="post"
           action="/posts/create"
           onSubmit={toggleEditable}
-          className="relative"
+          className="relative flex-auto"
         >
           <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
             <textarea
