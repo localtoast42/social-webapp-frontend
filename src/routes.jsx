@@ -4,9 +4,11 @@ import Feed from "./components/Feed";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
+import UserSearch from "./components/UserSearch";
 import UserProfile from "./components/UserProfile";
 import { 
   userLoader, 
+  userSearchLoader,
   homeFeedLoader,
   profileFeedLoader } from "./loaders";
 import { 
@@ -32,6 +34,11 @@ const routes = [
             loader: homeFeedLoader
           },
         ]
+      },
+      {
+        path: "/users",
+        element: <UserSearch />,
+        loader: userSearchLoader
       },
       {
         path: "/users/:userId",
