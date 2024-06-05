@@ -12,20 +12,22 @@ function UserCard({ user }) {
           <p className="mt-1 truncate text-xs leading-5 text-gray-500">{user.username}</p>
         </div>
       </div>
-      <Form method="post" action={`${user.url}/follow`}>
-        <button 
-          type="submit"
+      <div className="flex gap-x-2">
+        <Form method="post" action={`${user.url}/follow`}>
+          <button
+            type="submit"
+            className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          >
+            Follow
+          </button>
+        </Form>
+        <NavLink
+          to={user.url}
           className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
         >
-          Follow
-        </button>
-      </Form>
-      <NavLink
-        to={user.url}
-        className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-      >
-        View
-      </NavLink>
+          View
+        </NavLink>
+      </div>
     </li>
   )
 }
