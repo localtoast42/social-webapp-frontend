@@ -15,7 +15,9 @@ import {
   loginAction, 
   logoutAction,
   registerAction,
-  postCreateAction } from "./actions";
+  postCreateAction,
+  followAction,
+  unfollowAction } from "./actions";
 
 const routes = [
   {
@@ -50,6 +52,14 @@ const routes = [
             loader: profileFeedLoader
           },
         ]
+      },
+      {
+        path: "/users/follow/:userId",
+        action: followAction
+      },
+      {
+        path: "/users/unfollow/:userId",
+        action: unfollowAction
       },
       {
         path: "/posts/create",
