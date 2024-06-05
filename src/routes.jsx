@@ -8,6 +8,7 @@ import UserSearch from "./components/UserSearch";
 import UserProfile from "./components/UserProfile";
 import { 
   userLoader, 
+  userProfileLoader,
   userSearchLoader,
   homeFeedLoader,
   profileFeedLoader } from "./loaders";
@@ -45,6 +46,7 @@ const routes = [
       {
         path: "/users/:userId",
         element: <UserProfile />,
+        loader: userProfileLoader,
         children: [
           {
             index: true,
