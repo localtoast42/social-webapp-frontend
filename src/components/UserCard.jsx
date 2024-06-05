@@ -13,7 +13,7 @@ function UserCard({ user }) {
         </div>
       </div>
       <div className="flex gap-x-2">
-        <Form method="post" action={`${user.url}/follow`}>
+        <Form method="post" action={`${user.url}/follow`} className="flex">
           <button
             type="submit"
             className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
