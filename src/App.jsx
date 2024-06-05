@@ -25,6 +25,12 @@ function App() {
                   >
                     My Profile
                   </NavLink>
+                  <NavLink 
+                    to={`/users`}
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    Search Users
+                  </NavLink>
                   <Form method="post" action="logout">
                     <button className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">
                       Sign out
