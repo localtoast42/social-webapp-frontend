@@ -45,6 +45,42 @@ export async function registerAction({ request }) {
   }
 }
 
+export async function followAction({ request }) {
+  const formData = await request.formData();
+  const targetId = formData.get("targetId");
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
+    method: 'POST',
+    headers: { 'Authorization': token },
+  });
+
+  if (response.status == 401) {
+    return redirect('/login');
+  } else {
+    return response;
+  }
+}
+
+export async function unfollowAction({ request }) {
+  const formData = await request.formData();
+  const targetId = formData.get("targetId");
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
+    method: 'DELETE',
+    headers: { 'Authorization': token },
+  });
+
+  if (response.status == 401) {
+    return redirect('/login');
+  } else {
+    return response;
+  }
+}
+
 export async function postCreateAction({ request }) {
   const formData = await request.formData();
   const post = Object.fromEntries(formData);
