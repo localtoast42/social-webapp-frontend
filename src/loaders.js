@@ -19,6 +19,23 @@ export async function userLoader() {
   return { user };
 }
 
+export async function userSearchLoader() {
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users`, { 
+    mode: "cors",
+    headers: { 'Authorization': token }
+  });
+
+  if (response.status == 401) {
+    return redirect('/login')
+  }
+  
+  const users = await response.json();
+
+  return { users };
+}
+
 export async function homeFeedLoader() {
   const token = localStorage.getItem("jwt");
 
