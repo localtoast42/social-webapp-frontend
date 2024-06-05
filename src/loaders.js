@@ -22,18 +22,25 @@ export async function userLoader() {
 export async function userSearchLoader() {
   const token = localStorage.getItem("jwt");
 
-  const response = await fetch(`${API_URL}/users`, { 
-    mode: "cors",
-    headers: { 'Authorization': token }
-  });
+  const [usersResponse, followingResponse] = await Promise.all([
+    fetch(`${API_URL}/users`, { 
+      mode: "cors",
+      headers: { 'Authorization': token }
+    }),
+    fetch(`${API_URL}/users/following`, { 
+      mode: "cors",
+      headers: { 'Authorization': token }
+    })
+  ])
 
-  if (response.status == 401) {
+  if (usersResponse.status == 401 || followingResponse == 401) {
     return redirect('/login')
   }
   
-  const users = await response.json();
+  const users = await usersResponse.json();
+  const following = await followingResponse.json();
 
-  return { users };
+  return { users, following };
 }
 
 export async function homeFeedLoader() {
