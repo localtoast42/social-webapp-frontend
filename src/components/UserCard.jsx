@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { Form, NavLink } from 'react-router-dom';
+import { NavLink, useFetcher } from 'react-router-dom';
 
 function UserCard({ user, isFollowing }) {
+  const fetcher = useFetcher();
 
   return (
     <li className="flex items-center justify-between gap-x-6 py-5">
@@ -14,24 +15,28 @@ function UserCard({ user, isFollowing }) {
       </div>
       <div className="flex gap-x-2">
         {!isFollowing && 
-          <Form method="post" action={`${user.url}/follow`} className="flex">
+          <fetcher.Form method="post" action={`follow/${user.id}`} className="flex">
             <button
               type="submit"
+              name="targetId"
+              value={user.id}
               className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
               Follow
             </button>
-          </Form>
+          </fetcher.Form>
         }
         {isFollowing && 
-          <Form method="post" action={`${user.url}/unfollow`} className="flex">
+          <fetcher.Form method="post" action={`unfollow/${user.id}`} className="flex">
             <button
               type="submit"
+              name="targetId"
+              value={user.id}
               className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
               Unfollow
             </button>
-          </Form>
+          </fetcher.Form>
         }
         <NavLink
           to={user.url}
