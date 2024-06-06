@@ -1,4 +1,4 @@
-import Post from "./Post";
+import PostCard from "./PostCard";
 import NewPost from "./NewPost";
 import { useLoaderData } from "react-router-dom";
 
@@ -11,7 +11,7 @@ function Feed() {
         <NewPost></NewPost>
       </div>
       <div className="mt-4 flex flex-col divide-y divide-gray-300">
-        {posts.map(post => <Post
+        {posts.map(post => <PostCard
           key={post.id}
           post={post} />
         )}
