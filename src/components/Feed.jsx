@@ -10,7 +10,7 @@ function Feed() {
       <div>
         <NewPost></NewPost>
       </div>
-      <div className="mt-4 flex flex-col gap-2 divide-y divide-gray-100">
+      <div className="mt-4 flex flex-col divide-y divide-gray-300">
         {posts.map(post => <Post
           key={post.id}
           post={post} />
