@@ -98,3 +98,21 @@ export async function postCreateAction({ request }) {
 
   return response;
 }
+
+export async function postLikeAction({ params, request }) {
+  const formData = await request.formData();
+  const like = Object.fromEntries(formData);
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/${params.postId}/like`, { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+    body: JSON.stringify(like)
+  });
+
+  return response;
+}
