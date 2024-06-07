@@ -1,8 +1,9 @@
-# React + Vite
+# Social Media Project - Frontend
+A basic social media site for writing and sharing text posts. Built for the final project in The Odin Project NodeJS course.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Link to project demo:**
 
-Currently, two official plugins are available:
+**Link to backend repo:** https://github.com/localtoast42/odin-social-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
+
