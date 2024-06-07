@@ -27,7 +27,7 @@ function App() {
         <div className="grow max-w-xl">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-              <div className="flex">
+              <div className="flex space-x-4">
                 <NavLink
                   to="home"
                   className={({ isActive }) => 
