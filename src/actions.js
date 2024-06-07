@@ -116,3 +116,21 @@ export async function postLikeAction({ params, request }) {
 
   return response;
 }
+
+export async function commentCreateAction({ params, request }) {
+  const formData = await request.formData();
+  const comment = Object.fromEntries(formData);
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/${params.postId}/comments`, { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+    body: JSON.stringify(comment)
+  });
+
+  return response;
+}
