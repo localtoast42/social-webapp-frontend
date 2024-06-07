@@ -69,10 +69,10 @@ function Post() {
           </div>
         </div>
         <div>
-          <div>
+          <div className="mt-4">
             <NewComment postId={post.id}></NewComment>
           </div>
-          <div>
+          <div className="mt-4 flex flex-col divide-y divide-gray-300">
             {comments.map(comment => <Comment
               key={comment.id}
               comment={comment} />
