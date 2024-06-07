@@ -60,6 +60,23 @@ export async function userSearchLoader() {
   return { users, following };
 }
 
+export async function postLoader({ params }) {
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
+    mode: "cors",
+    headers: { 'Authorization': token }
+  });
+
+  if (response.status == 401) {
+    return redirect('/login')
+  }
+  
+  const post = await response.json();
+
+  return { post };
+}
+
 export async function homeFeedLoader() {
   const token = localStorage.getItem("jwt");
 

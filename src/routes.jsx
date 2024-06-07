@@ -1,6 +1,7 @@
 import App from "./App";
 import Home from "./components/Home";
 import Feed from "./components/Feed";
+import Post from "./components/Post";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
@@ -11,6 +12,7 @@ import {
   userProfileLoader,
   userSearchLoader,
   homeFeedLoader,
+  postLoader,
   profileFeedLoader } from "./loaders";
 import { 
   loginAction, 
@@ -63,6 +65,11 @@ const routes = [
       {
         path: "/users/unfollow/:userId",
         action: unfollowAction
+      },
+      {
+        path: "/posts/:postId",
+        element: <Post />,
+        loader: postLoader
       },
       {
         path: "/posts/create",
