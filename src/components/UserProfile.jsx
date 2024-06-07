@@ -1,7 +1,13 @@
+import NewPost from "./NewPost";
+import { UserContext } from "../contexts/UserContext";
+import { useContext } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
 
 function UserProfile() {
+  const user = useContext(UserContext)
   const { profile } = useLoaderData();
+
+  const userOwnedPage = user.id === profile.id;
 
   return (
     <div className="flex justify-center">
@@ -16,6 +22,7 @@ function UserProfile() {
           </div>
         </header>
         <main>
+          {userOwnedPage && <NewPost />}
           <Outlet />
         </main>
       </div>
