@@ -1,3 +1,4 @@
+import NewPost from "./NewPost";
 import { Outlet } from "react-router-dom";
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
           </div>
         </header>
         <main>
+          <NewPost />
           <Outlet />
         </main>
       </div>
