@@ -4,7 +4,7 @@ function Comment({ comment }) {
   return (
     <div>
       <div>
-        <h3>{comment.author}</h3>
+        <h3>{comment.author.fullName}</h3>
         <h3>{comment.date}</h3>
       </div>
       <p>{comment.text}</p>
