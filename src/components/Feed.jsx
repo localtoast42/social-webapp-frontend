@@ -6,7 +6,7 @@ function Feed() {
   const { posts } = useLoaderData();
 
   return (
-    <div className="grow max-w-xl py-8">
+    <div className="grow max-w-xl">
       <div>
         <NewPost></NewPost>
       </div>
