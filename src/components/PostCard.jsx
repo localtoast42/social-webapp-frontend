@@ -26,7 +26,11 @@ function PostCard({ post }) {
             <time dateTime={post.dateTime}>{post.date}</time>
           </p>
         </div>
-        <p className="mt-1 leading-6 text-gray-600">{post.text}</p>
+        <p className="mt-1 leading-6 text-gray-600">
+          <NavLink to={post.url}>
+            {post.text}
+          </NavLink>
+        </p>
         <div className="flex mt-2 gap-x-4">
           <div className="flex items-center gap-x-1">
             <fetcher.Form method="post" action={`/posts/${post.id}/like`} className="flex items-center">
