@@ -9,7 +9,7 @@ function UserProfile() {
   const { profile } = useLoaderData();
 
   const userOwnedPage = user.id === profile.id;
-  const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
+  const avatarUrl = profile.imageUrl ? profile.imageUrl : defaultAvatar;
 
   return (
     <div className="flex justify-center">
