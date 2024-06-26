@@ -1,4 +1,5 @@
 import NewPost from "./NewPost";
+import defaultAvatar from '../assets/defaultAvatar.svg';
 import { UserContext } from "../contexts/UserContext";
 import { useContext } from "react";
 import { Outlet, useLoaderData } from "react-router-dom";
@@ -8,11 +9,12 @@ function UserProfile() {
   const { profile } = useLoaderData();
 
   const userOwnedPage = user.id === profile.id;
+  const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
 
   return (
     <div className="flex justify-center">
       <div className="grow max-w-48 py-8">
-        <img className="h-24 w-24 flex-none rounded-full bg-gray-50" src="" alt="" />
+        <img className="h-24 w-24 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
         <p className="text-xl font-bold">{profile.firstName} {profile.lastName}</p>
       </div>
       <div className="grow max-w-xl">
