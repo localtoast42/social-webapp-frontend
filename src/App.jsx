@@ -1,4 +1,5 @@
 import './App.css';
+import defaultAvatar from './assets/defaultAvatar.svg';
 import { UserContext } from "./contexts/UserContext";
 import { 
   Form, 
@@ -55,8 +56,8 @@ function App() {
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="h-8 w-8 rounded-full"
-                      src=""
+                      className="h-10 w-10 rounded-full bg-gray-100"
+                      src={defaultAvatar}
                       alt=""
                     />
                   </MenuButton>
