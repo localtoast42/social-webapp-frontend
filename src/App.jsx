@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="flex min-h-full flex-col">
-      <nav className="flex justify-center items-center bg-gray-800">
+      <nav className="sticky top-0 flex justify-center items-center bg-gray-800">
         <div className="grow max-w-xl">
           <div className="relative flex h-16 items-center justify-between">
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
