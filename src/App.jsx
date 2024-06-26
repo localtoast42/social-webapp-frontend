@@ -56,7 +56,7 @@ function App() {
                     <span className="absolute -inset-1.5" />
                     <span className="sr-only">Open user menu</span>
                     <img
-                      className="h-10 w-10 rounded-full bg-gray-100"
+                      className="object-cover h-10 w-10 rounded-full bg-gray-100"
                       src={defaultAvatar}
                       alt=""
                     />

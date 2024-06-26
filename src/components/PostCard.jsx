@@ -15,7 +15,7 @@ function PostCard({ post }) {
 
   return (
     <div className="flex gap-x-4 py-2">
-      <img className="h-12 w-12 flex-none rounded-full bg-gray-100" src={defaultAvatar} alt="" />
+      <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={defaultAvatar} alt="" />
       <div className="flex-auto">
         <div className="flex items-baseline justify-between gap-x-4">
           <NavLink 
