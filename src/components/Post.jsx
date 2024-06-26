@@ -1,5 +1,6 @@
 import Comment from './Comment';
 import NewComment from './NewComment';
+import defaultAvatar from '../assets/defaultAvatar.svg';
 import { NavLink, useLoaderData, useFetcher } from 'react-router-dom';
 
 function Post() {
@@ -19,7 +20,7 @@ function Post() {
     <div className="flex justify-center">
       <div className="grow max-w-xl py-8">
         <div className="flex gap-x-4 py-2">
-          <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src="" alt="" />
+          <img className="h-12 w-12 flex-none rounded-full bg-gray-100" src={defaultAvatar} alt="" />
           <div className="flex-auto">
             <div className="flex items-baseline justify-between gap-x-4">
               <div className="flex flex-col">

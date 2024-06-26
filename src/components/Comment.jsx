@@ -1,3 +1,4 @@
+import defaultAvatar from '../assets/defaultAvatar.svg';
 import PropTypes from 'prop-types';
 import { NavLink, useFetcher } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ function Comment({ comment }) {
 
   return (
     <div className="flex gap-x-4 py-2">
-      <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src="" alt="" />
+      <img className="h-12 w-12 flex-none rounded-full bg-gray-100" src={defaultAvatar} alt="" />
       <div className="flex-auto">
         <div className="flex items-baseline justify-between gap-x-4">
           <NavLink 
