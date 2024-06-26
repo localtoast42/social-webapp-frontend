@@ -15,7 +15,8 @@ function UserProfile() {
     <div className="flex justify-center">
       <div className="grow max-w-48 py-8">
         <img className="h-24 w-24 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
-        <p className="text-xl font-bold">{profile.firstName} {profile.lastName}</p>
+        <p className="mt-2 text-xl leading-6 font-bold">{profile.fullName}</p>
+        <p className="mt-1 truncate leading-5 text-gray-500">{`@${profile.username}`}</p>
       </div>
       <div className="grow max-w-xl">
         <header>
