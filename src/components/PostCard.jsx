@@ -13,9 +13,11 @@ function PostCard({ post }) {
     ? (fetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)
     : post.numLikes;
 
+  const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
+
   return (
     <div className="flex gap-x-4 py-2">
-      <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={defaultAvatar} alt="" />
+      <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
       <div className="flex-auto">
         <div className="flex items-baseline justify-between gap-x-4">
           <NavLink 

@@ -21,6 +21,7 @@ function classNames(...classes) {
 
 function App() {
   const { user } = useLoaderData();
+  const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
 
   return (
     <div className="flex min-h-full flex-col">
@@ -57,7 +58,7 @@ function App() {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="object-cover h-10 w-10 rounded-full bg-gray-100"
-                      src={defaultAvatar}
+                      src={avatarUrl}
                       alt=""
                     />
                   </MenuButton>
