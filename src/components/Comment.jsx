@@ -13,13 +13,15 @@ function Comment({ comment }) {
     ? (fetcher.formData.get("like") === "true" ? comment.numLikes + 1 : comment.numLikes - 1)
     : comment.numLikes;
 
+  const avatarUrl = comment.author.imageUrl ? comment.author.imageUrl : defaultAvatar;
+
   return (
     <div className="flex gap-x-4 py-2">
       <NavLink 
         to={comment.author.url}
         className="flex-none self-start"
       >
-        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={defaultAvatar} alt="" />
+        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
       </NavLink>
       <div className="flex-auto">
         <div className="flex items-baseline justify-between gap-x-4">
