@@ -1,23 +1,33 @@
+import defaultAvatar from '../assets/defaultAvatar.svg';
 import PropTypes from 'prop-types';
-import { useState } from "react";
-import { useFetcher } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useFetcher, NavLink } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 export default function NewComment({ postId }) {
+  const user = useContext(UserContext);
   const fetcher = useFetcher();
   const [isEditable, setIsEditable] = useState(false);
+
+  const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
 
   function toggleEditable() {
     setIsEditable(!isEditable);
   }
 
   return (
-    <div className="flex gap-x-4">
-      <div className="w-12"></div>
+    <div className="flex gap-x-4 py-3 px-3">
+      <NavLink 
+        to={user.url}
+        className="flex-none self-start"
+      >
+        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
+      </NavLink>
       {!isEditable && 
         <button
         type="button"
         onClick={toggleEditable}
-        className="relative flex-auto flex justify-center py-2 rounded-lg font-semibold leading-6 text-white bg-indigo-600 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="relative flex-auto flex justify-center items-center rounded-lg font-semibold leading-6 text-white bg-indigo-600 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
           + Add a comment
         </button>
