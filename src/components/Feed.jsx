@@ -6,7 +6,7 @@ function Feed() {
 
   return (
     <div className="grow max-w-xl">
-      <div className="mt-4 flex flex-col divide-y divide-gray-300">
+      <div className="flex flex-col divide-y divide-gray-300">
         {posts.map(post => <PostCard
           key={post.id}
           post={post} />
