@@ -22,7 +22,12 @@ function Post() {
     <div className="flex justify-center">
       <div className="grow max-w-xl py-8">
         <div className="flex gap-x-4 py-2">
-          <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
+          <NavLink 
+          to={post.author.url}
+          className="flex-none self-start"
+          >
+            <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
+          </NavLink>
           <div className="flex-auto">
             <div className="flex items-baseline justify-between gap-x-4">
               <div className="flex flex-col">
