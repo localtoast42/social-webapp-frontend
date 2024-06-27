@@ -9,13 +9,13 @@ function UserCard({ user, isFollowing }) {
 
   return (
     <li className="flex items-center justify-between gap-x-6 px-3 py-3">
-      <div className="flex min-w-0 gap-x-4">
-        <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
+      <NavLink to={user.url} className="flex min-w-0 gap-x-4">
+        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
         <div className="min-w-0 flex-auto">
           <p className="font-semibold leading-6 text-gray-900">{user.fullName}</p>
           <p className="mt-1 truncate leading-5 text-gray-500">{`@${user.username}`}</p>
         </div>
-      </div>
+      </NavLink>
       <div className="flex gap-x-2">
         {!isFollowing && 
           <fetcher.Form method="post" action={`follow/${user.id}`} className="flex">
@@ -41,12 +41,6 @@ function UserCard({ user, isFollowing }) {
             </button>
           </fetcher.Form>
         }
-        <NavLink
-          to={user.url}
-          className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        >
-          View
-        </NavLink>
       </div>
     </li>
   )
