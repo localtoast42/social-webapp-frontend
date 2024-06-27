@@ -20,8 +20,8 @@ function Post() {
 
   return (
     <div className="flex justify-center">
-      <div className="grow max-w-xl py-8">
-        <div className="flex gap-x-4 py-2">
+      <div className="grow max-w-xl border border-gray-300">
+        <div className="mt-3 flex gap-x-4 py-2 px-3">
           <NavLink 
           to={post.author.url}
           className="flex-none self-start"
@@ -50,7 +50,7 @@ function Post() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="px-3">
           <p className="mt-1 leading-6 text-gray-600">{post.text}</p>
           <div className="flex mt-2 gap-x-4">
             <div className="flex items-center gap-x-1">
