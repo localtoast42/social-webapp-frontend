@@ -16,7 +16,7 @@ function Comment({ comment }) {
   const avatarUrl = comment.author.imageUrl ? comment.author.imageUrl : defaultAvatar;
 
   return (
-    <div className="flex gap-x-4 py-2">
+    <div className="flex gap-x-4 py-3 px-3">
       <NavLink 
         to={comment.author.url}
         className="flex-none self-start"
