@@ -6,14 +6,14 @@ function UserSearch() {
 
   return (
     <div className="flex justify-center">
-      <div className="grow max-w-xl">
+      <div className="grow max-w-xl divide-y divide-gray-300 border border-gray-300">
         <header>
-          <div className="px-2 py-6">
+          <div className="px-3 py-6">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">Search Users</h1>
           </div>
         </header>
-        <div className="grow max-w-xl px-4 sm:px-6">
-          <ul role="list" className="divide-y divide-gray-100">
+        <div className="grow max-w-xl px-3">
+          <ul role="list" className="divide-y divide-gray-300">
             {users.map(person => <UserCard
               key={person.id}
               user={person}

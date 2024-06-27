@@ -8,7 +8,7 @@ function UserCard({ user, isFollowing }) {
   const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
 
   return (
-    <li className="flex items-center justify-between gap-x-6 py-5">
+    <li className="flex items-center justify-between gap-x-6 px-3 py-3">
       <div className="flex min-w-0 gap-x-4">
         <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
         <div className="min-w-0 flex-auto">
