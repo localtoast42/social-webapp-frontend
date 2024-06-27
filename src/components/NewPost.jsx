@@ -15,7 +15,7 @@ export default function NewPost() {
   }
 
   return (
-    <div className="mt-3 min-w-0 flex-1 flex gap-x-4 px-3">
+    <div className="mt-6 min-w-0 flex-1 flex gap-x-4 px-3">
       <NavLink 
         to={user.url}
         className="flex-none self-start"

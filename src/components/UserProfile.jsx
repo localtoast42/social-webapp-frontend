@@ -13,13 +13,13 @@ function UserProfile() {
 
   return (
     <div className="flex justify-center">
-      <div className="grow max-w-48 py-8">
+      <div className="grow max-w-48 py-6">
         <img className="object-cover h-24 w-24 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
         <p className="mt-2 text-xl leading-6 font-bold">{profile.fullName}</p>
         <p className="mt-1 truncate leading-5 text-gray-500">{`@${profile.username}`}</p>
       </div>
       <div className="grow max-w-xl divide-y divide-gray-300 border border-gray-300">
-        <header className="py-3">
+        <header className="py-6">
           <div className="px-3">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">{`${profile.firstName}'s Posts`}</h1>
           </div>
