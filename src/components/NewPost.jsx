@@ -10,7 +10,7 @@ export default function NewPost() {
   }
 
   return (
-    <div className="min-w-0 flex-1 flex gap-x-4">
+    <div className="min-w-0 flex-1 flex gap-x-4 px-3">
       <div className="w-12"></div>
       {!isEditable && 
         <button

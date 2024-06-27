@@ -16,7 +16,7 @@ function PostCard({ post }) {
   const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
 
   return (
-    <div className="flex gap-x-4 py-2">
+    <div className="flex gap-x-4 px-3 py-3">
       <img className="object-cover h-12 w-12 flex-none rounded-full bg-gray-100" src={avatarUrl} alt="" />
       <div className="flex-auto">
         <div className="flex items-baseline justify-between gap-x-4">
