@@ -23,9 +23,9 @@ function UserCard({ user, isFollowing }) {
               type="submit"
               name="targetId"
               value={user.id}
-              className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="rounded-full bg-white px-2.5 py-1 text-sm font-semibold leading-6 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
-              Follow
+              + Follow
             </button>
           </fetcher.Form>
         }
@@ -35,7 +35,7 @@ function UserCard({ user, isFollowing }) {
               type="submit"
               name="targetId"
               value={user.id}
-              className="rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="rounded-full bg-red-500 px-2.5 py-1 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600"
             >
               Unfollow
             </button>
