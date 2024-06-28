@@ -7,8 +7,8 @@ function classNames(...classes) {
 
 function Home() {
   const tabs = [
-    { name: 'Recent', href: 'recent' },
-    { name: 'Following', href: 'following' },
+    { name: 'Recent', href: '/home' },
+    { name: 'Following', href: '/home/following' },
   ]
 
   return (
@@ -22,6 +22,7 @@ function Home() {
                   <NavLink
                     key={tab.name}
                     to={tab.href}
+                    end
                     className={({ isActive }) => 
                       classNames(
                         isActive

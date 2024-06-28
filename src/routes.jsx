@@ -39,7 +39,7 @@ const routes = [
         element: <Home />,
         children: [
           {
-            path: "recent",
+            index: true,
             element: <Feed />,
             loader: recentFeedLoader
           },
