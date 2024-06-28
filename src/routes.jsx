@@ -11,7 +11,8 @@ import {
   userLoader, 
   userProfileLoader,
   userSearchLoader,
-  homeFeedLoader,
+  recentFeedLoader,
+  followingFeedLoader,
   postLoader,
   profileFeedLoader } from "./loaders";
 import { 
@@ -38,9 +39,14 @@ const routes = [
         element: <Home />,
         children: [
           {
-            index: true,
+            path: "recent",
             element: <Feed />,
-            loader: homeFeedLoader
+            loader: recentFeedLoader
+          },
+          {
+            path: "following",
+            element: <Feed />,
+            loader: followingFeedLoader
           },
         ]
       },
