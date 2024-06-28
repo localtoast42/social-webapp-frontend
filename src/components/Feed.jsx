@@ -11,6 +11,15 @@ function Feed() {
           key={post.id}
           post={post} />
         )}
+        {posts.length === 0 && 
+          <div className="flex gap-x-4 py-6 px-3">
+            <div>
+              <h2 className="px-3 font-semibold text-2xl">
+                No posts to show...
+              </h2>
+            </div>
+          </div>
+        }
       </div>
     </div>
   )
