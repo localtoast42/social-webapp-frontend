@@ -1,6 +1,4 @@
 import NewPost from "./NewPost";
-import { UserContext } from "../contexts/UserContext";
-import { useContext } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 
 function classNames(...classes) {
@@ -8,8 +6,6 @@ function classNames(...classes) {
 }
 
 function Home() {
-  const user = useContext(UserContext);
-
   const tabs = [
     { name: 'Recent', href: 'recent' },
     { name: 'Following', href: 'following' },
@@ -25,22 +21,6 @@ function Home() {
           <NewPost />
         </header>
         <main>
-          {!user.hasFollows &&
-            <div className="flex gap-x-4 py-3 border-b border-gray-300">
-              <div className="w-12"></div>
-              <div>
-                <h2 className="px-3 font-semibold text-2xl">
-                  Showing most recent sitewide posts...
-                </h2>
-                <p className="px-3 text-xl">
-                  <NavLink to="/users" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                    Follow users{' '}
-                  </NavLink>
-                  to customize your feed!
-                </p>
-              </div>
-            </div>
-          }
           <div>
             <div className="hidden sm:block">
               <div className="border-b border-gray-200">
