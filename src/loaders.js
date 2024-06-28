@@ -80,16 +80,25 @@ export async function postLoader({ params }) {
 export async function homeFeedLoader() {
   const token = localStorage.getItem("jwt");
 
-  const response = await fetch(`${API_URL}/posts`, { 
-    mode: "cors",
-    headers: { 'Authorization': token }
-  });
+  const [followingResponse, defaultResponse] = await Promise.all([
+    fetch(`${API_URL}/posts/following`, { 
+      mode: "cors",
+      headers: { 'Authorization': token }
+    }),
+    fetch(`${API_URL}/posts?limit=10`, { 
+      mode: "cors",
+      headers: { 'Authorization': token }
+    })
+  ]);
 
-  if (response.status == 401) {
+  if (followingResponse.status == 401) {
     return redirect('/login')
   }
   
-  const posts = await response.json();
+  const followingPosts = await followingResponse.json();
+  const defaultPosts = await defaultResponse.json();
+
+  const posts = followingPosts.length > 0 ? followingPosts : defaultPosts;
 
   return { posts };
 }
