@@ -15,7 +15,8 @@ import {
   postLoader,
   profileFeedLoader } from "./loaders";
 import { 
-  loginAction, 
+  loginAction,
+  guestLoginAction, 
   logoutAction,
   registerAction,
   postCreateAction,
@@ -102,6 +103,10 @@ const routes = [
     element: <Login />,
     errorElement: <ErrorPage />,
     action: loginAction
+  },
+  {
+    path: "/login/guest",
+    action: guestLoginAction
   },
   {
     path: "/logout",

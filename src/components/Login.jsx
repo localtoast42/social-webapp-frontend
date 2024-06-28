@@ -52,12 +52,22 @@ const Login = () => {
           </div>
         </Form>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
+        <p className="mt-6 text-center text-md text-gray-500">
           Not a member?{' '}
           <NavLink to="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
             Register
           </NavLink>
         </p>
+        <Form 
+          method="post" 
+          action="/login/guest"
+          className="text-center text-md text-gray-500"
+        >
+          Or{' '}
+          <button className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+            sign in as guest
+          </button>
+        </Form>
       </div>
     </div>
   );

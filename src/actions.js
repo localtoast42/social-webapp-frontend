@@ -22,6 +22,21 @@ export async function loginAction({ request }) {
   }
 }
 
+export async function guestLoginAction() {
+  const response = await fetch(`${API_URL}/login/guest`, { 
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (response.status == 401) {
+    return redirect('/login');
+  } else {
+    const responseData = await response.json();
+    localStorage.setItem("jwt", responseData.token);
+    return redirect('/home');
+  }
+}
+
 export async function logoutAction() {
   localStorage.removeItem("jwt");
   
