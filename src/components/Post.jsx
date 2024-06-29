@@ -8,6 +8,8 @@ import { NavLink, useLoaderData, useFetcher } from 'react-router-dom';
 function Post() {
   const likeFetcher = useFetcher();
   const editFetcher = useFetcher();
+  const deleteFetcher = useFetcher();
+
   const { post } = useLoaderData();
   const user = useContext(UserContext);
   const [isEditable, setIsEditable] = useState(false);
@@ -144,11 +146,16 @@ function Post() {
                 >
                   Edit
                 </button>
-                <button 
-                  className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600"
+                <deleteFetcher.Form 
+                  method="post"
+                  action={`/posts/${post.id}/delete`}
                 >
-                  Delete
-                </button>
+                  <button
+                    className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600"
+                  >
+                    Delete
+                  </button>
+                </deleteFetcher.Form>
               </div>
             }
           </div>
