@@ -21,6 +21,7 @@ import {
   logoutAction,
   registerAction,
   postCreateAction,
+  postEditAction,
   postLikeAction,
   commentCreateAction,
   commentLikeAction,
@@ -83,6 +84,10 @@ const routes = [
       {
         path: "/posts/create",
         action: postCreateAction
+      },
+      {
+        path: "/posts/:postId/edit",
+        action: postEditAction
       },
       {
         path: "/posts/:postId/like",

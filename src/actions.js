@@ -114,6 +114,24 @@ export async function postCreateAction({ request }) {
   return response;
 }
 
+export async function postEditAction({ params, request }) {
+  const formData = await request.formData();
+  const post = Object.fromEntries(formData);
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+    body: JSON.stringify(post)
+  });
+
+  return response;
+}
+
 export async function postLikeAction({ params, request }) {
   const formData = await request.formData();
   const like = Object.fromEntries(formData);
