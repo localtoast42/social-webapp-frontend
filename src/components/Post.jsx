@@ -92,14 +92,14 @@ function Post() {
                 <div className="flex-shrink-0 flex space-x-2">
                   <button
                     type="submit"
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-1 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="inline-flex items-center rounded-md px-3 py-1 font-semibold text-white shadow-sm bg-indigo-600 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Submit
                   </button>
                   <button
                     type="button"
                     onClick={toggleEditable}
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-1 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="inline-flex items-center rounded-md px-3 py-1 font-semibold text-white shadow-sm bg-indigo-600 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Cancel
                   </button>
