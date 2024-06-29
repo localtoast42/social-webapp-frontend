@@ -6,19 +6,20 @@ import { useState, useContext } from "react";
 import { NavLink, useLoaderData, useFetcher } from 'react-router-dom';
 
 function Post() {
-  const fetcher = useFetcher();
+  const likeFetcher = useFetcher();
+  const editFetcher = useFetcher();
   const { post } = useLoaderData();
   const user = useContext(UserContext);
   const [isEditable, setIsEditable] = useState(false);
 
   const comments = post.comments;
 
-  const like = fetcher.formData 
-    ? fetcher.formData.get("like") === "true"
+  const like = likeFetcher.formData 
+    ? likeFetcher.formData.get("like") === "true"
     : post.isLiked;
   
-  const numLikes = fetcher.formData 
-    ? (fetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)
+  const numLikes = likeFetcher.formData 
+    ? (likeFetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)
     : post.numLikes;
 
   const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
@@ -63,7 +64,7 @@ function Post() {
         </div>
         <div className="px-3">
           {isEditable && 
-            <fetcher.Form 
+            <editFetcher.Form 
               method="post"
               action={`/posts/${post.id}/edit`}
               onSubmit={toggleEditable}
@@ -102,7 +103,7 @@ function Post() {
                   </button>
                 </div>
               </div>
-            </fetcher.Form>
+            </editFetcher.Form>
           }
           {!isEditable && 
 
@@ -113,7 +114,7 @@ function Post() {
           <div className="mt-2 flex place-content-between">
             <div className="flex gap-x-4">
               <div className="flex items-center gap-x-1">
-                <fetcher.Form method="post" action={`/posts/${post.id}/like`} className="flex items-center">
+                <likeFetcher.Form method="post" action={`/posts/${post.id}/like`} className="flex items-center">
                   <button
                     name="like"
                     value={like ? "false" : "true"}
@@ -122,7 +123,7 @@ function Post() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                     </svg>
                   </button>
-                </fetcher.Form>
+                </likeFetcher.Form>
                 <p className="text-gray-900">{numLikes}</p>
               </div>
               <div className="flex items-center gap-x-1">
