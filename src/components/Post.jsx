@@ -2,14 +2,16 @@ import Comment from './Comment';
 import NewComment from './NewComment';
 import { UserContext } from "../contexts/UserContext";
 import defaultAvatar from '../assets/defaultAvatar.svg';
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { NavLink, useLoaderData, useFetcher } from 'react-router-dom';
 
 function Post() {
-  const user = useContext(UserContext);
-  const { post } = useLoaderData();
-  const comments = post.comments;
   const fetcher = useFetcher();
+  const { post } = useLoaderData();
+  const user = useContext(UserContext);
+  const [isEditable, setIsEditable] = useState(false);
+
+  const comments = post.comments;
 
   const like = fetcher.formData 
     ? fetcher.formData.get("like") === "true"
@@ -22,6 +24,10 @@ function Post() {
   const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
 
   const isPostAuthor = user.id === post.author.id;
+
+  function toggleEditable() {
+    setIsEditable(!isEditable);
+  }
 
   return (
     <div className="flex justify-center">
@@ -56,7 +62,54 @@ function Post() {
           </div>
         </div>
         <div className="px-3">
-          <p className="mt-1 leading-6 text-gray-600">{post.text}</p>
+          {isEditable && 
+            <fetcher.Form 
+              method="post"
+              action={`/posts/${post.id}/edit`}
+              onSubmit={toggleEditable}
+              className="relative flex-auto"
+            >
+              <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                <textarea
+                  rows={3}
+                  id="text"
+                  name="text"
+                  defaultValue={post.text}
+                  className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:leading-6"
+                >
+                </textarea>
+                <div className="py-2" aria-hidden="true">
+                  <div className="py-px">
+                    <div className="h-9" />
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
+                <div></div>
+                <div className="flex-shrink-0 flex space-x-2">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-1 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={toggleEditable}
+                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-1 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </fetcher.Form>
+          }
+          {!isEditable && 
+
+            <p className="mt-1 leading-6 text-gray-600">
+              {post.text}
+            </p>
+          }
           <div className="mt-2 flex place-content-between">
             <div className="flex gap-x-4">
               <div className="flex items-center gap-x-1">
@@ -81,9 +134,11 @@ function Post() {
                 <p className="text-gray-900">{post.numComments}</p>
               </div>
             </div>
-            {isPostAuthor && 
+            {isPostAuthor && !isEditable && 
               <div className="flex gap-x-4">
                 <button 
+                  type="button"
+                  onClick={toggleEditable}
                   className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-indigo-600 hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Edit
