@@ -164,7 +164,8 @@ function Post() {
           <div className="mt-4 flex flex-col divide-y divide-gray-300 border-t border-gray-300">
             {comments.map(comment => <Comment
               key={comment.id}
-              comment={comment} />
+              comment={comment}
+              isCommentAuthor={user.id === comment.author.id} />
             )}
             <NewComment postId={post.id}></NewComment>
           </div>
