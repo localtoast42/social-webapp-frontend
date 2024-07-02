@@ -1,14 +1,17 @@
 import defaultAvatar from '../assets/defaultAvatar.svg';
 import { useState } from "react";
-import { useLoaderData, useFetcher, useActionData } from "react-router-dom";
+import { useLoaderData, useFetcher } from "react-router-dom";
 
 function UserSettings() {
   const { user } = useLoaderData();
   const fetcher = useFetcher();
-  const errors = useActionData();
-  const [isEditable, setIsEditable] = useState(false);
+  const errors = fetcher.data;
+  const [isEditable, setIsEditable] = useState(errors);
 
   const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
+
+  console.log(fetcher.state);
+  console.log(fetcher.data);
 
   function toggleEditable() {
     setIsEditable(!isEditable);
@@ -52,6 +55,7 @@ function UserSettings() {
                             disabled={!isEditable}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6"
                           />
+                          {errors?.username && <span className="text-sm text-red-500">{errors.username.msg}</span>}
                         </div>
                       </div>
                     </div>
@@ -92,6 +96,7 @@ function UserSettings() {
                           disabled={!isEditable}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200"
                         />
+                        {errors?.firstName && <span className="text-sm text-red-500">{errors.firstName.msg}</span>}
                       </div>
                     </div>
 
@@ -108,6 +113,7 @@ function UserSettings() {
                           disabled={!isEditable}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200"
                         />
+                        {errors?.lastName && <span className="text-sm text-red-500">{errors.lastName.msg}</span>}
                       </div>
                     </div>
 
@@ -124,6 +130,7 @@ function UserSettings() {
                           disabled={!isEditable}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200"
                         />
+                        {errors?.city && <span className="text-sm text-red-500">{errors.city.msg}</span>}
                       </div>
                     </div>
 
@@ -140,6 +147,7 @@ function UserSettings() {
                           disabled={!isEditable}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200"
                         />
+                        {errors?.state && <span className="text-sm text-red-500">{errors.state.msg}</span>}
                       </div>
                     </div>
 
