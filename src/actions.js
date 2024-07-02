@@ -53,8 +53,10 @@ export async function registerAction({ request }) {
     body: JSON.stringify(user) 
   });
 
-  if (response.status == 201) {
-    return redirect('/login');
+  if (response.status == 200) {
+    const responseData = await response.json();
+    localStorage.setItem("jwt", responseData.token);
+    return redirect('/home');
   } else {
     return response;
   }
