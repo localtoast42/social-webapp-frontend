@@ -48,7 +48,11 @@ function UserProfile() {
           <div className="px-3">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">{`${profile.firstName}'s Posts`}</h1>
           </div>
-          {userOwnedPage && <NewPost />}
+          {userOwnedPage && 
+            <div className="mt-6">
+              <NewPost />
+            </div>
+          }
         </header>
         <main>
           <Outlet />
