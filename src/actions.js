@@ -224,6 +224,20 @@ export async function commentCreateAction({ params, request }) {
   return response;
 }
 
+export async function commentDeleteAction({ params }) {
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/posts/${params.postId}/comments/${params.commentId}`, { 
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+  });
+
+  return response;
+}
+
 export async function commentLikeAction({ params, request }) {
   const formData = await request.formData();
   const like = Object.fromEntries(formData);
