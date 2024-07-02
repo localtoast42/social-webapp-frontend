@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
 import UserSearch from "./components/UserSearch";
 import UserProfile from "./components/UserProfile";
+import UserSettings from "./components/UserSettings";
 import { 
   userLoader, 
   userProfileLoader,
@@ -20,6 +21,8 @@ import {
   guestLoginAction, 
   logoutAction,
   registerAction,
+  userUpdateAction,
+  userDeleteAction,
   postCreateAction,
   postEditAction,
   postDeleteAction,
@@ -53,6 +56,11 @@ const routes = [
         ]
       },
       {
+        path: "/settings",
+        element: <UserSettings />,
+        loader: userLoader
+      },
+      {
         path: "/users",
         element: <UserSearch />,
         loader: userSearchLoader
@@ -68,6 +76,14 @@ const routes = [
             loader: profileFeedLoader
           },
         ]
+      },
+      {
+        path: "/users/:userId/update",
+        action: userUpdateAction
+      },
+      {
+        path: "/users/:userId/delete",
+        action: userDeleteAction
       },
       {
         path: "/users/follow/:userId",
