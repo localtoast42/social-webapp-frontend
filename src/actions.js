@@ -14,7 +14,7 @@ export async function loginAction({ request }) {
   });
 
   if (response.status == 401) {
-    return redirect('/login');
+    return response;
   } else {
     const responseData = await response.json();
     localStorage.setItem("jwt", responseData.token);
