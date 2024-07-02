@@ -10,9 +10,6 @@ function UserSettings() {
 
   const avatarUrl = user.imageUrl ? user.imageUrl : defaultAvatar;
 
-  console.log(fetcher.state);
-  console.log(fetcher.data);
-
   function toggleEditable() {
     setIsEditable(!isEditable);
   }
