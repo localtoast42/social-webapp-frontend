@@ -60,6 +60,44 @@ export async function registerAction({ request }) {
   }
 }
 
+export async function userUpdateAction({ params, request }) {
+  const formData = await request.formData();
+  const user = Object.fromEntries(formData);
+
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users/${params.userId}`, { 
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': token 
+    },
+    body: JSON.stringify(user) 
+  });
+
+  if (response.status == 401) {
+    return redirect('/login');
+  } else {
+    return response;
+  }
+}
+
+export async function userDeleteAction({ params }) {
+  const token = localStorage.getItem("jwt");
+
+  const response = await fetch(`${API_URL}/users/${params.userId}`, { 
+    method: 'DELETE',
+    headers: { 'Authorization': token },
+  });
+
+  if (response.status == 200) {
+    localStorage.removeItem("jwt");
+    return redirect('/login');
+  } else {
+    return response;
+  }
+}
+
 export async function followAction({ request }) {
   const formData = await request.formData();
   const targetId = formData.get("targetId");
