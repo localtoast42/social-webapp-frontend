@@ -23,16 +23,16 @@ function PostCard({ post }) {
       >
         <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
       </NavLink>
-      <div className="flex-auto">
-        <div className="flex items-baseline justify-between gap-x-4">
+      <div className="flex-auto min-w-0">
+        <div className="flex items-baseline justify-between gap-x-1 max-w-[100%]">
           <NavLink 
             to={post.author.url}
-            className="flex items-baseline gap-x-1"
+            className="shrink truncate flex items-baseline gap-x-1"
           >
-            <div className="text-md font-bold leading-6 text-gray-900">{post.author.fullName}</div>
-            <div className="text-md leading-5 text-gray-500">{`@${post.author.username}`}</div>
+            <div className="whitespace-nowrap text-md font-bold leading-6 text-gray-900">{post.author.fullName}</div>
+            <div className="truncate shrink text-md leading-5 text-gray-500">{`@${post.author.username}`}</div>
           </NavLink>
-          <p className="flex-none text-sm text-gray-600">
+          <p className="whitespace-nowrap text-sm text-gray-600">
             <time dateTime={post.dateTime}>{post.date}</time>
           </p>
         </div>
