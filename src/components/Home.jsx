@@ -13,7 +13,7 @@ function Home() {
 
   return (
     <div className="flex justify-center">
-      <div className="grow max-w-xl flex flex-col divide-y divide-gray-300 border border-gray-300">
+      <div className="min-w-0 grow max-w-xl flex flex-col divide-y divide-gray-300 border border-gray-300">
         <header>
           <div className="hidden sm:block">
             <div className="border-b border-gray-200">
