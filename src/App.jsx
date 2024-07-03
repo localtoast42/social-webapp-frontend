@@ -28,7 +28,7 @@ function App() {
       <nav className="sticky z-50 top-0 flex justify-center items-center bg-gray-800">
         <div className="grow max-w-xl px-2">
           <div className="relative flex h-16 items-center justify-between">
-            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex flex-1 items-center justify-start sm:items-stretch">
               <div className="flex space-x-4">
                 <NavLink
                   to="/home"
