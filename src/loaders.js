@@ -36,11 +36,20 @@ export async function userProfileLoader({ params }) {
   return { profile };
 }
 
-export async function userSearchLoader() {
+export async function userSearchLoader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+
+  const queryUrl = new URL(`${API_URL}/users`);
+
+  if (q) {
+    queryUrl.searchParams.append('q', q);
+  }
+
   const token = localStorage.getItem("jwt");
 
   const [usersResponse, followingResponse] = await Promise.all([
-    fetch(`${API_URL}/users`, { 
+    fetch(queryUrl, { 
       mode: "cors",
       headers: { 'Authorization': token }
     }),
@@ -57,7 +66,7 @@ export async function userSearchLoader() {
   const users = await usersResponse.json();
   const following = await followingResponse.json();
 
-  return { users, following };
+  return { users, following, q };
 }
 
 export async function postLoader({ params }) {
