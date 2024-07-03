@@ -16,6 +16,9 @@ function Home() {
       <div className="min-w-0 grow max-w-xl flex flex-col divide-y divide-gray-300 border border-gray-300">
         <header>
           <div>
+            <div className="py-6 border-b border-gray-300">
+              <NewPost />
+            </div>
             <div className="border-b border-gray-200">
               <nav className="-mb-px px-3 flex space-x-8" aria-label="Tabs">
                 {tabs.map((tab) => (
@@ -39,9 +42,6 @@ function Home() {
           </div>
         </header>
         <main>
-          <div className="py-6 border-b border-gray-300">
-            <NewPost />
-          </div>
           <Outlet />
         </main>
       </div>
