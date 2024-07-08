@@ -1,7 +1,8 @@
-import { Form, NavLink, useActionData } from "react-router-dom";
+import { Form, NavLink, useActionData, useNavigation } from "react-router-dom";
 
 const Login = () => {
   const errors = useActionData();
+  const navigation = useNavigation();
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -72,6 +73,11 @@ const Login = () => {
             sign in as guest
           </button>
         </Form>
+        {navigation.state !== "idle" && 
+          <div className="mt-3 text-center font-semibold text-md text-gray-700">
+            Loading...
+          </div>
+        }
       </div>
     </div>
   );
