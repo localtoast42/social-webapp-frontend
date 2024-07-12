@@ -41,7 +41,11 @@ function Comment({ comment, isCommentAuthor }) {
         <div className="mt-2 flex place-content-between">
           <div className="flex mt-2 gap-x-4">
             <div className="flex items-center gap-x-1">
-              <likeFetcher.Form method="post" action={`comments/${comment.id}/like`} className="flex items-center">
+              <likeFetcher.Form 
+                method="post" 
+                action={`comments/${comment.id}/like`} 
+                className="flex items-center"
+              >
                 <button
                   name="like"
                   value={like ? "false" : "true"}

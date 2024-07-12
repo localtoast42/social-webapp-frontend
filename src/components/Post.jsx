@@ -116,7 +116,11 @@ function Post() {
           <div className="mt-2 flex place-content-between">
             <div className="flex gap-x-4">
               <div className="flex items-center gap-x-1">
-                <likeFetcher.Form method="post" action={`/posts/${post.id}/like`} className="flex items-center">
+                <likeFetcher.Form 
+                  method="post" 
+                  action={`/posts/${post.id}/like`} 
+                  className="flex items-center"
+                >
                   <button
                     name="like"
                     value={like ? "false" : "true"}
