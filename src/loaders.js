@@ -3,11 +3,15 @@ import { redirect } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function userLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/self`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {
@@ -20,11 +24,15 @@ export async function userLoader() {
 }
 
 export async function userProfileLoader({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${params.userId}`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {
@@ -46,16 +54,23 @@ export async function userSearchLoader({ request }) {
     queryUrl.searchParams.append('q', q);
   }
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const [usersResponse, followingResponse] = await Promise.all([
     fetch(queryUrl, { 
       mode: "cors",
-      headers: { 'Authorization': token }
+      headers: { 
+        'Authorization': accessToken,
+        'X-Refresh': refreshToken,
+      }
     }),
     fetch(`${API_URL}/users/following`, { 
       mode: "cors",
-      headers: { 'Authorization': token }
+      headers: { 
+        'Authorization': accessToken,
+        'X-Refresh': refreshToken,
+      }
     })
   ])
 
@@ -70,11 +85,15 @@ export async function userSearchLoader({ request }) {
 }
 
 export async function postLoader({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {
@@ -87,11 +106,15 @@ export async function postLoader({ params }) {
 }
 
 export async function recentFeedLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts?limit=10`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {
@@ -104,11 +127,15 @@ export async function recentFeedLoader() {
 }
 
 export async function followingFeedLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/following`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {
@@ -121,10 +148,15 @@ export async function followingFeedLoader() {
 }
 
 export async function profileFeedLoader({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
+  
   const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
 
   if (response.status == 401) {

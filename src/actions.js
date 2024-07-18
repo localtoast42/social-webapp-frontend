@@ -6,7 +6,7 @@ export async function loginAction({ request }) {
   const formData = await request.formData();
   const user = Object.fromEntries(formData);
 
-  const response = await fetch(`${API_URL}/login`, { 
+  const response = await fetch(`${API_URL}/sessions`, { 
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
@@ -17,13 +17,14 @@ export async function loginAction({ request }) {
     return response;
   } else {
     const responseData = await response.json();
-    localStorage.setItem("jwt", responseData.token);
+    localStorage.setItem("accessToken", responseData.accessToken);
+    localStorage.setItem("refreshToken", responseData.refreshToken);
     return redirect('/home');
   }
 }
 
 export async function guestLoginAction() {
-  const response = await fetch(`${API_URL}/login/guest`, { 
+  const response = await fetch(`${API_URL}/guest`, { 
     method: 'POST',
     credentials: 'include',
   });
@@ -32,7 +33,8 @@ export async function guestLoginAction() {
     return redirect('/login');
   } else {
     const responseData = await response.json();
-    localStorage.setItem("jwt", responseData.token);
+    localStorage.setItem("accessToken", responseData.accessToken);
+    localStorage.setItem("refreshToken", responseData.refreshToken);
     return redirect('/home');
   }
 }
@@ -66,13 +68,15 @@ export async function userUpdateAction({ params, request }) {
   const formData = await request.formData();
   const user = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${params.userId}`, { 
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(user) 
   });
@@ -85,11 +89,15 @@ export async function userUpdateAction({ params, request }) {
 }
 
 export async function userDeleteAction({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${params.userId}`, { 
     method: 'DELETE',
-    headers: { 'Authorization': token },
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    },
   });
 
   if (response.status == 200) {
@@ -104,11 +112,15 @@ export async function followAction({ request }) {
   const formData = await request.formData();
   const targetId = formData.get("targetId");
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
     method: 'POST',
-    headers: { 'Authorization': token },
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    },
   });
 
   if (response.status == 401) {
@@ -122,11 +134,15 @@ export async function unfollowAction({ request }) {
   const formData = await request.formData();
   const targetId = formData.get("targetId");
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
     method: 'DELETE',
-    headers: { 'Authorization': token },
+    headers: {
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    },
   });
 
   if (response.status == 401) {
@@ -140,13 +156,15 @@ export async function postCreateAction({ request }) {
   const formData = await request.formData();
   const post = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(post)
   });
@@ -158,13 +176,15 @@ export async function postEditAction({ params, request }) {
   const formData = await request.formData();
   const post = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(post)
   });
@@ -173,13 +193,15 @@ export async function postEditAction({ params, request }) {
 }
 
 export async function postDeleteAction({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
   });
 
@@ -194,13 +216,15 @@ export async function postLikeAction({ params, request }) {
   const formData = await request.formData();
   const like = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}/like`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(like)
   });
@@ -212,13 +236,15 @@ export async function commentCreateAction({ params, request }) {
   const formData = await request.formData();
   const comment = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}/comments`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(comment)
   });
@@ -227,13 +253,15 @@ export async function commentCreateAction({ params, request }) {
 }
 
 export async function commentDeleteAction({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}/comments/${params.commentId}`, { 
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
   });
 
@@ -244,13 +272,15 @@ export async function commentLikeAction({ params, request }) {
   const formData = await request.formData();
   const like = Object.fromEntries(formData);
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/${params.postId}/comments/${params.commentId}/like`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
     },
     body: JSON.stringify(like)
   });
