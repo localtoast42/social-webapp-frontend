@@ -14,11 +14,12 @@ function Post() {
   const user = useContext(UserContext);
   const [isEditable, setIsEditable] = useState(false);
 
+  const isLiked = post.likes.includes(user.id);
   const comments = post.comments;
 
   const like = likeFetcher.formData 
     ? likeFetcher.formData.get("like") === "true"
-    : post.isLiked;
+    : isLiked;
   
   const numLikes = likeFetcher.formData 
     ? (likeFetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)

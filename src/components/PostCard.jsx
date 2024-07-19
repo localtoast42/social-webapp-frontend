@@ -2,12 +2,12 @@ import defaultAvatar from '../assets/defaultAvatar.svg';
 import PropTypes from 'prop-types';
 import { NavLink, useFetcher } from 'react-router-dom';
 
-function PostCard({ post }) {
+function PostCard({ post, isLiked }) {
   const fetcher = useFetcher();
 
   const like = fetcher.formData 
     ? fetcher.formData.get("like") === "true"
-    : post.isLiked;
+    : isLiked;
   
   const numLikes = fetcher.formData 
     ? (fetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)
@@ -71,6 +71,7 @@ function PostCard({ post }) {
 
 PostCard.propTypes = {
   post: PropTypes.object.isRequired,
+  isLiked: PropTypes.bool.isRequired
 }
 
 export default PostCard
