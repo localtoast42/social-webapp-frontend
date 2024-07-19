@@ -15,12 +15,12 @@ export async function loginAction({ request }) {
 
   if (response.status == 401) {
     return response;
-  } else {
-    const responseData = await response.json();
-    localStorage.setItem("accessToken", responseData.accessToken);
-    localStorage.setItem("refreshToken", responseData.refreshToken);
-    return redirect('/home');
   }
+
+  const responseData = await response.json();
+  localStorage.setItem("accessToken", responseData.accessToken);
+  localStorage.setItem("refreshToken", responseData.refreshToken);
+  return redirect('/home');
 }
 
 export async function guestLoginAction() {
@@ -31,12 +31,12 @@ export async function guestLoginAction() {
 
   if (response.status == 401) {
     return redirect('/login');
-  } else {
-    const responseData = await response.json();
-    localStorage.setItem("accessToken", responseData.accessToken);
-    localStorage.setItem("refreshToken", responseData.refreshToken);
-    return redirect('/home');
-  }
+  } 
+
+  const responseData = await response.json();
+  localStorage.setItem("accessToken", responseData.accessToken);
+  localStorage.setItem("refreshToken", responseData.refreshToken);
+  return redirect('/home');
 }
 
 export async function logoutAction() {
@@ -55,14 +55,14 @@ export async function registerAction({ request }) {
     body: JSON.stringify(user) 
   });
 
-  if (response.status == 200) {
-    const responseData = await response.json();
-    localStorage.setItem("accessToken", responseData.accessToken);
-    localStorage.setItem("refreshToken", responseData.refreshToken);
-    return redirect('/home');
-  } else {
+  if (response.status != 200) {
     return response;
   }
+
+  const responseData = await response.json();
+  localStorage.setItem("accessToken", responseData.accessToken);
+  localStorage.setItem("refreshToken", responseData.refreshToken);
+  return redirect('/home');
 }
 
 export async function userUpdateAction({ params, request }) {
@@ -84,9 +84,9 @@ export async function userUpdateAction({ params, request }) {
 
   if (response.status == 401) {
     return redirect('/login');
-  } else {
-    return response;
-  }
+  } 
+
+  return response;
 }
 
 export async function userDeleteAction({ params }) {
@@ -101,12 +101,12 @@ export async function userDeleteAction({ params }) {
     },
   });
 
-  if (response.status == 200) {
-    localStorage.removeItem("jwt");
-    return redirect('/login');
-  } else {
+  if (response.status != 200) {
     return response;
-  }
+  } 
+
+  localStorage.removeItem("jwt");
+  return redirect('/login');
 }
 
 export async function followAction({ request }) {
@@ -126,9 +126,9 @@ export async function followAction({ request }) {
 
   if (response.status == 401) {
     return redirect('/login');
-  } else {
-    return response;
   }
+  
+  return response;
 }
 
 export async function unfollowAction({ request }) {
@@ -148,9 +148,9 @@ export async function unfollowAction({ request }) {
 
   if (response.status == 401) {
     return redirect('/login');
-  } else {
-    return response;
   }
+  
+  return response;
 }
 
 export async function postCreateAction({ request }) {
@@ -206,11 +206,11 @@ export async function postDeleteAction({ params }) {
     },
   });
 
-  if (response.status == 200) {
-    return redirect('/home');
-  } else {
+  if (response.status != 200) {
     return response;
   }
+
+  return redirect('/home');
 }
 
 export async function postLikeAction({ params, request }) {
