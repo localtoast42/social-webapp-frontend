@@ -10,12 +10,11 @@ function Post() {
   const editFetcher = useFetcher();
   const deleteFetcher = useFetcher();
 
-  const { post } = useLoaderData();
+  const { post, comments } = useLoaderData();
   const user = useContext(UserContext);
   const [isEditable, setIsEditable] = useState(false);
 
   const isLiked = post.likes.includes(user.id);
-  const comments = post.comments;
 
   const like = likeFetcher.formData 
     ? likeFetcher.formData.get("like") === "true"
