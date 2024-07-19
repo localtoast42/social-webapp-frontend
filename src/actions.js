@@ -57,7 +57,8 @@ export async function registerAction({ request }) {
 
   if (response.status == 200) {
     const responseData = await response.json();
-    localStorage.setItem("jwt", responseData.token);
+    localStorage.setItem("accessToken", responseData.accessToken);
+    localStorage.setItem("refreshToken", responseData.refreshToken);
     return redirect('/home');
   } else {
     return response;
