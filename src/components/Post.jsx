@@ -170,7 +170,8 @@ function Post() {
             {comments.map(comment => <Comment
               key={comment.id}
               comment={comment}
-              isCommentAuthor={user.id === comment.author.id} />
+              isCommentAuthor={user.id === comment.author.id}
+              isLiked={comment.likes.includes(user.id)} />
             )}
             <NewComment postId={post.id}></NewComment>
           </div>
