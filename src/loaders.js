@@ -69,37 +69,27 @@ export async function userSearchLoader({ request }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const [usersResponse, followingResponse] = await Promise.all([
-    fetch(queryUrl, { 
-      mode: "cors",
-      headers: { 
-        'Authorization': accessToken,
-        'X-Refresh': refreshToken,
-      }
-    }),
-    fetch(`${API_URL}/users/following`, { 
+  const response = await fetch(queryUrl, { 
       mode: "cors",
       headers: { 
         'Authorization': accessToken,
         'X-Refresh': refreshToken,
       }
     })
-  ])
 
-  const newAccessToken = usersResponse.headers.get('x-access-token');
+  const newAccessToken = response.headers.get('x-access-token');
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
-  if (usersResponse.status == 401 || followingResponse == 401) {
+  if (response.status == 401) {
     return redirect('/login')
   }
   
-  const users = await usersResponse.json();
-  const following = await followingResponse.json();
+  const users = await response.json();
 
-  return { users, following, q };
+  return { users, q };
 }
 
 export async function postLoader({ params }) {
