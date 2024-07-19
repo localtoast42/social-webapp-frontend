@@ -40,7 +40,23 @@ export async function guestLoginAction() {
 }
 
 export async function logoutAction() {
-  localStorage.removeItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
+
+  const response = await fetch(`${API_URL}/sessions`, { 
+    method: 'DELETE',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    },
+  });
+
+  const responseData = await response.json();
+
+  localStorage.setItem("accessToken", responseData.accessToken);
+  localStorage.setItem("refreshToken", responseData.refreshToken);
   
   return redirect('/login');
 }
