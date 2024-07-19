@@ -82,6 +82,12 @@ export async function userUpdateAction({ params, request }) {
     body: JSON.stringify(user) 
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (response.status == 401) {
     return redirect('/login');
   } 
@@ -100,6 +106,12 @@ export async function userDeleteAction({ params }) {
       'X-Refresh': refreshToken,
     },
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status != 200) {
     return response;
@@ -124,6 +136,12 @@ export async function followAction({ request }) {
     },
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (response.status == 401) {
     return redirect('/login');
   }
@@ -145,6 +163,12 @@ export async function unfollowAction({ request }) {
       'X-Refresh': refreshToken,
     },
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login');
@@ -170,6 +194,12 @@ export async function postCreateAction({ request }) {
     body: JSON.stringify(post)
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   return response;
 }
 
@@ -190,6 +220,12 @@ export async function postEditAction({ params, request }) {
     body: JSON.stringify(post)
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   return response;
 }
 
@@ -205,6 +241,12 @@ export async function postDeleteAction({ params }) {
       'X-Refresh': refreshToken,
     },
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status != 200) {
     return response;
@@ -230,6 +272,12 @@ export async function postLikeAction({ params, request }) {
     body: JSON.stringify(like)
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   return response;
 }
 
@@ -250,6 +298,12 @@ export async function commentCreateAction({ params, request }) {
     body: JSON.stringify(comment)
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   return response;
 }
 
@@ -265,6 +319,12 @@ export async function commentDeleteAction({ params }) {
       'X-Refresh': refreshToken,
     },
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   return response;
 }
@@ -285,6 +345,12 @@ export async function commentLikeAction({ params, request }) {
     },
     body: JSON.stringify(like)
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   return response;
 }

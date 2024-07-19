@@ -14,6 +14,12 @@ export async function userLoader() {
     }
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (response.status == 401) {
     return redirect('/login')
   }
@@ -34,6 +40,12 @@ export async function userProfileLoader({ params }) {
       'X-Refresh': refreshToken,
     }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -74,6 +86,12 @@ export async function userSearchLoader({ request }) {
     })
   ])
 
+  const newAccessToken = usersResponse.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (usersResponse.status == 401 || followingResponse == 401) {
     return redirect('/login')
   }
@@ -96,6 +114,12 @@ export async function postLoader({ params }) {
     }
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (response.status == 401) {
     return redirect('/login')
   }
@@ -116,6 +140,12 @@ export async function recentFeedLoader() {
       'X-Refresh': refreshToken,
     }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -138,6 +168,12 @@ export async function followingFeedLoader() {
     }
   });
 
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
   if (response.status == 401) {
     return redirect('/login')
   }
@@ -150,7 +186,7 @@ export async function followingFeedLoader() {
 export async function profileFeedLoader({ params }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
-  
+
   const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { 
     mode: "cors",
     headers: { 
@@ -158,6 +194,12 @@ export async function profileFeedLoader({ params }) {
       'X-Refresh': refreshToken,
     }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
