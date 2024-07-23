@@ -62,7 +62,7 @@ function Comment({ comment, isCommentAuthor, isLiked }) {
             <div className="flex gap-x-4">
               <deleteFetcher.Form
                 method="post"
-                action={`/posts/${comment.post.id}/comments/${comment.id}/delete`}
+                action={`/posts/${comment.post}/comments/${comment.id}/delete`}
               >
                 <button
                   className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600"
