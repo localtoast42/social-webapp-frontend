@@ -10,15 +10,15 @@ function Post() {
   const editFetcher = useFetcher();
   const deleteFetcher = useFetcher();
 
-  const { post } = useLoaderData();
+  const { post, comments } = useLoaderData();
   const user = useContext(UserContext);
   const [isEditable, setIsEditable] = useState(false);
 
-  const comments = post.comments;
+  const isLiked = post.likes.includes(user.id);
 
   const like = likeFetcher.formData 
     ? likeFetcher.formData.get("like") === "true"
-    : post.isLiked;
+    : isLiked;
   
   const numLikes = likeFetcher.formData 
     ? (likeFetcher.formData.get("like") === "true" ? post.numLikes + 1 : post.numLikes - 1)
@@ -169,7 +169,8 @@ function Post() {
             {comments.map(comment => <Comment
               key={comment.id}
               comment={comment}
-              isCommentAuthor={user.id === comment.author.id} />
+              isCommentAuthor={user.id === comment.author.id}
+              isLiked={comment.likes.includes(user.id)} />
             )}
             <NewComment postId={post.id}></NewComment>
           </div>

@@ -2,13 +2,13 @@ import defaultAvatar from '../assets/defaultAvatar.svg';
 import PropTypes from 'prop-types';
 import { NavLink, useFetcher } from 'react-router-dom';
 
-function Comment({ comment, isCommentAuthor }) {
+function Comment({ comment, isCommentAuthor, isLiked }) {
   const likeFetcher = useFetcher();
   const deleteFetcher = useFetcher();
 
   const like = likeFetcher.formData 
     ? likeFetcher.formData.get("like") === "true"
-    : comment.isLiked;
+    : isLiked;
   
   const numLikes = likeFetcher.formData 
     ? (likeFetcher.formData.get("like") === "true" ? comment.numLikes + 1 : comment.numLikes - 1)
@@ -62,7 +62,7 @@ function Comment({ comment, isCommentAuthor }) {
             <div className="flex gap-x-4">
               <deleteFetcher.Form
                 method="post"
-                action={`/posts/${comment.post.id}/comments/${comment.id}/delete`}
+                action={`/posts/${comment.post}/comments/${comment.id}/delete`}
               >
                 <button
                   className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600"
@@ -80,7 +80,8 @@ function Comment({ comment, isCommentAuthor }) {
 
 Comment.propTypes = {
   comment: PropTypes.object.isRequired,
-  isCommentAuthor: PropTypes.bool.isRequired
+  isCommentAuthor: PropTypes.bool.isRequired,
+  isLiked: PropTypes.bool.isRequired,
 }
 
 export default Comment

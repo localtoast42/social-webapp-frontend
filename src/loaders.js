@@ -3,12 +3,22 @@ import { redirect } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export async function userLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/self`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -20,12 +30,22 @@ export async function userLoader() {
 }
 
 export async function userProfileLoader({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${params.userId}`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -46,53 +66,86 @@ export async function userSearchLoader({ request }) {
     queryUrl.searchParams.append('q', q);
   }
 
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
-  const [usersResponse, followingResponse] = await Promise.all([
-    fetch(queryUrl, { 
+  const response = await fetch(queryUrl, { 
       mode: "cors",
-      headers: { 'Authorization': token }
-    }),
-    fetch(`${API_URL}/users/following`, { 
-      mode: "cors",
-      headers: { 'Authorization': token }
+      headers: { 
+        'Authorization': accessToken,
+        'X-Refresh': refreshToken,
+      }
     })
-  ])
 
-  if (usersResponse.status == 401 || followingResponse == 401) {
-    return redirect('/login')
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
   }
-  
-  const users = await usersResponse.json();
-  const following = await followingResponse.json();
-
-  return { users, following, q };
-}
-
-export async function postLoader({ params }) {
-  const token = localStorage.getItem("jwt");
-
-  const response = await fetch(`${API_URL}/posts/${params.postId}`, { 
-    mode: "cors",
-    headers: { 'Authorization': token }
-  });
 
   if (response.status == 401) {
     return redirect('/login')
   }
   
-  const post = await response.json();
+  const users = await response.json();
 
-  return { post };
+  return { users, q };
+}
+
+export async function postLoader({ params }) {
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
+
+  const [postResponse, commentsResponse] = await Promise.all([
+    fetch(`${API_URL}/posts/${params.postId}`, { 
+      mode: "cors",
+      headers: { 
+        'Authorization': accessToken,
+        'X-Refresh': refreshToken,
+      }
+    }),
+    fetch(`${API_URL}/posts/${params.postId}/comments`, { 
+      mode: "cors",
+      headers: { 
+        'Authorization': accessToken,
+        'X-Refresh': refreshToken,
+      }
+    })
+  ]);
+
+  const newAccessToken = postResponse.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
+
+  if (postResponse.status == 401) {
+    return redirect('/login')
+  }
+  
+  const post = await postResponse.json();
+  const comments = await commentsResponse.json();
+
+  return { post, comments };
 }
 
 export async function recentFeedLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts?limit=10`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -104,12 +157,22 @@ export async function recentFeedLoader() {
 }
 
 export async function followingFeedLoader() {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/posts/following`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')
@@ -121,11 +184,22 @@ export async function followingFeedLoader() {
 }
 
 export async function profileFeedLoader({ params }) {
-  const token = localStorage.getItem("jwt");
+  const accessToken = localStorage.getItem("accessToken");
+  const refreshToken = localStorage.getItem("refreshToken");
+
   const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { 
     mode: "cors",
-    headers: { 'Authorization': token }
+    headers: { 
+      'Authorization': accessToken,
+      'X-Refresh': refreshToken,
+    }
   });
+
+  const newAccessToken = response.headers.get('x-access-token');
+
+  if (newAccessToken) {
+    localStorage.setItem("accessToken", newAccessToken);
+  }
 
   if (response.status == 401) {
     return redirect('/login')

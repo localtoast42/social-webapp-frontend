@@ -1,10 +1,12 @@
 import magnify from '../assets/magnify.svg';
 import UserCard from "./UserCard";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Form, useLoaderData } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 function UserSearch() {
-  const { users, following, q } = useLoaderData();
+  const user = useContext(UserContext);
+  const { users, q } = useLoaderData();
 
   useEffect(() => {
     document.getElementById("q").value = q;
@@ -46,7 +48,7 @@ function UserSearch() {
             {users.map(person => <UserCard
               key={person.id}
               user={person}
-              isFollowing={following.includes(person.id)} />
+              isFollowing={user.following.includes(person.id)} />
             )}
           </ul>
         </div>
