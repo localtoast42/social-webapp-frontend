@@ -133,7 +133,10 @@ export async function userDeleteAction({ params }) {
     return response;
   } 
 
-  localStorage.removeItem("jwt");
+  const responseData = await response.json();
+  localStorage.setItem("accessToken", responseData.accessToken);
+  localStorage.setItem("refreshToken", responseData.refreshToken);
+  
   return redirect('/login');
 }
 
