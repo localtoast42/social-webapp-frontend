@@ -120,11 +120,11 @@ const routes = [
         action: commentCreateAction
       },
       {
-        path: "/posts/:postId/comments/:commentId/delete",
+        path: "/comments/:commentId/delete",
         action: commentDeleteAction
       },
       {
-        path: "/posts/:postId/comments/:commentId/like",
+        path: "/comments/:commentId/like",
         action: commentLikeAction
       },
     ]
