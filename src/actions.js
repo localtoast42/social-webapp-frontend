@@ -136,7 +136,7 @@ export async function userDeleteAction({ params }) {
   const responseData = await response.json();
   localStorage.setItem("accessToken", responseData.accessToken);
   localStorage.setItem("refreshToken", responseData.refreshToken);
-  
+
   return redirect('/login');
 }
 
@@ -150,9 +150,11 @@ export async function followAction({ request }) {
   const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
     method: 'POST',
     headers: { 
+      'Content-Type': 'application/json',
       'Authorization': accessToken,
       'X-Refresh': refreshToken,
     },
+    body: JSON.stringify({ follow: "true" })
   });
 
   const newAccessToken = response.headers.get('x-access-token');
@@ -176,11 +178,13 @@ export async function unfollowAction({ request }) {
   const refreshToken = localStorage.getItem("refreshToken");
 
   const response = await fetch(`${API_URL}/users/${targetId}/follow`, { 
-    method: 'DELETE',
-    headers: {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
       'Authorization': accessToken,
       'X-Refresh': refreshToken,
     },
+    body: JSON.stringify({ follow: "false" })
   });
 
   const newAccessToken = response.headers.get('x-access-token');
@@ -330,7 +334,7 @@ export async function commentDeleteAction({ params }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/posts/${params.postId}/comments/${params.commentId}`, { 
+  const response = await fetch(`${API_URL}/comments/${params.commentId}`, { 
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -355,7 +359,7 @@ export async function commentLikeAction({ params, request }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/posts/${params.postId}/comments/${params.commentId}/like`, { 
+  const response = await fetch(`${API_URL}/comments/${params.commentId}/like`, { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -87,7 +87,9 @@ export async function userSearchLoader({ request }) {
     return redirect('/login')
   }
   
-  const users = await response.json();
+  const responseData = await response.json();
+
+  const users = responseData.data;
 
   return { users, q };
 }
@@ -124,7 +126,9 @@ export async function postLoader({ params }) {
   }
   
   const post = await postResponse.json();
-  const comments = await commentsResponse.json();
+
+  const commentsData = await commentsResponse.json();
+  const comments = commentsData.data;
 
   return { post, comments };
 }
@@ -151,7 +155,8 @@ export async function recentFeedLoader() {
     return redirect('/login')
   }
   
-  const posts = await response.json();
+  const responseData = await response.json();
+  const posts = responseData.data;
 
   return { posts };
 }
@@ -178,7 +183,8 @@ export async function followingFeedLoader() {
     return redirect('/login')
   }
   
-  const posts = await response.json();
+  const responseData = await response.json();
+  const posts = responseData.data;
 
   return { posts };
 }
@@ -205,7 +211,8 @@ export async function profileFeedLoader({ params }) {
     return redirect('/login')
   }
   
-  const posts = await response.json();
+  const responseData = await response.json();
+  const posts = responseData.data;
 
   return { posts };
 }
