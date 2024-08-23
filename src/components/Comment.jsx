@@ -12,9 +12,9 @@ function Comment({ comment, isCommentAuthor, isLiked }) {
 
   const numLikes = likeFetcher.formData
     ? likeFetcher.formData.get("like") === "true"
-      ? comment.numLikes + 1
-      : comment.numLikes - 1
-    : comment.numLikes;
+      ? comment._count.likes + 1
+      : comment._count.likes - 1
+    : comment._count.likes;
 
   const avatarUrl = comment.author.imageUrl
     ? comment.author.imageUrl

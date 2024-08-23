@@ -22,9 +22,9 @@ function Post() {
 
   const numLikes = likeFetcher.formData
     ? likeFetcher.formData.get("like") === "true"
-      ? post.numLikes + 1
-      : post.numLikes - 1
-    : post.numLikes;
+      ? post._count.likes + 1
+      : post._count.likes - 1
+    : post._count.likes;
 
   const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
 
@@ -156,7 +156,7 @@ function Post() {
                     />
                   </svg>
                 </button>
-                <p className="text-gray-900">{post.numComments}</p>
+                <p className="text-gray-900">{post._count.children}</p>
               </div>
             </div>
             {isPostAuthor && !isEditable && (

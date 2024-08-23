@@ -11,9 +11,9 @@ function PostCard({ post, isLiked }) {
 
   const numLikes = fetcher.formData
     ? fetcher.formData.get("like") === "true"
-      ? post.numLikes + 1
-      : post.numLikes - 1
-    : post.numLikes;
+      ? post._count.likes + 1
+      : post._count.likes - 1
+    : post._count.likes;
 
   const avatarUrl = post.author.imageUrl ? post.author.imageUrl : defaultAvatar;
 
@@ -87,7 +87,7 @@ function PostCard({ post, isLiked }) {
                 />
               </svg>
             </NavLink>
-            <p className="text-gray-900">{post.numComments}</p>
+            <p className="text-gray-900">{post._count.children}</p>
           </div>
         </div>
       </div>
