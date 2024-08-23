@@ -6,24 +6,24 @@ export async function userLoader() {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/users/self`, { 
+  const response = await fetch(`${API_URL}/users/self`, {
     mode: "cors",
-    headers: { 
-      'Authorization': accessToken,
-      'X-Refresh': refreshToken,
-    }
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
   });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const user = await response.json();
 
   return { user };
@@ -33,24 +33,24 @@ export async function userProfileLoader({ params }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/users/${params.userId}`, { 
+  const response = await fetch(`${API_URL}/users/${params.userId}`, {
     mode: "cors",
-    headers: { 
-      'Authorization': accessToken,
-      'X-Refresh': refreshToken,
-    }
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
   });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const profile = await response.json();
 
   return { profile };
@@ -63,30 +63,30 @@ export async function userSearchLoader({ request }) {
   const queryUrl = new URL(`${API_URL}/users`);
 
   if (q) {
-    queryUrl.searchParams.append('q', q);
+    queryUrl.searchParams.append("q", q);
   }
 
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(queryUrl, { 
-      mode: "cors",
-      headers: { 
-        'Authorization': accessToken,
-        'X-Refresh': refreshToken,
-      }
-    })
+  const response = await fetch(queryUrl, {
+    mode: "cors",
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
+  });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const responseData = await response.json();
 
   const users = responseData.data;
@@ -99,32 +99,32 @@ export async function postLoader({ params }) {
   const refreshToken = localStorage.getItem("refreshToken");
 
   const [postResponse, commentsResponse] = await Promise.all([
-    fetch(`${API_URL}/posts/${params.postId}`, { 
+    fetch(`${API_URL}/posts/${params.postId}`, {
       mode: "cors",
-      headers: { 
-        'Authorization': accessToken,
-        'X-Refresh': refreshToken,
-      }
+      headers: {
+        Authorization: accessToken,
+        "X-Refresh": refreshToken,
+      },
     }),
-    fetch(`${API_URL}/posts/${params.postId}/comments`, { 
+    fetch(`${API_URL}/posts/${params.postId}/comments`, {
       mode: "cors",
-      headers: { 
-        'Authorization': accessToken,
-        'X-Refresh': refreshToken,
-      }
-    })
+      headers: {
+        Authorization: accessToken,
+        "X-Refresh": refreshToken,
+      },
+    }),
   ]);
 
-  const newAccessToken = postResponse.headers.get('x-access-token');
+  const newAccessToken = postResponse.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (postResponse.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const post = await postResponse.json();
 
   const commentsData = await commentsResponse.json();
@@ -137,24 +137,24 @@ export async function recentFeedLoader() {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/posts?limit=10`, { 
+  const response = await fetch(`${API_URL}/posts?limit=10`, {
     mode: "cors",
-    headers: { 
-      'Authorization': accessToken,
-      'X-Refresh': refreshToken,
-    }
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
   });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const responseData = await response.json();
   const posts = responseData.data;
 
@@ -165,24 +165,24 @@ export async function followingFeedLoader() {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/posts/following`, { 
+  const response = await fetch(`${API_URL}/posts/following`, {
     mode: "cors",
-    headers: { 
-      'Authorization': accessToken,
-      'X-Refresh': refreshToken,
-    }
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
   });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const responseData = await response.json();
   const posts = responseData.data;
 
@@ -193,24 +193,24 @@ export async function profileFeedLoader({ params }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
-  const response = await fetch(`${API_URL}/users/${params.userId}/posts`, { 
+  const response = await fetch(`${API_URL}/users/${params.userId}/posts`, {
     mode: "cors",
-    headers: { 
-      'Authorization': accessToken,
-      'X-Refresh': refreshToken,
-    }
+    headers: {
+      Authorization: accessToken,
+      "X-Refresh": refreshToken,
+    },
   });
 
-  const newAccessToken = response.headers.get('x-access-token');
+  const newAccessToken = response.headers.get("x-access-token");
 
   if (newAccessToken) {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
   if (response.status == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
-  
+
   const responseData = await response.json();
   const posts = responseData.data;
 

@@ -1,22 +1,17 @@
-import './App.css';
-import defaultAvatar from './assets/defaultAvatar.svg';
+import "./App.css";
+import defaultAvatar from "./assets/defaultAvatar.svg";
 import { UserContext } from "./contexts/UserContext";
-import { 
-  Form, 
-  Outlet, 
-  NavLink, 
-  useLoaderData 
-} from "react-router-dom";
+import { Form, Outlet, NavLink, useLoaderData } from "react-router-dom";
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuItems,
   Transition,
-} from '@headlessui/react';
+} from "@headlessui/react";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 function App() {
@@ -32,8 +27,13 @@ function App() {
               <div className="flex space-x-4">
                 <NavLink
                   to="/home"
-                  className={({ isActive }) => 
-                    classNames(isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")
+                  className={({ isActive }) =>
+                    classNames(
+                      isActive
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )
                   }
                 >
                   Home
@@ -41,8 +41,13 @@ function App() {
                 <NavLink
                   to="/users"
                   end
-                  className={({ isActive }) => 
-                    classNames(isActive ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")
+                  className={({ isActive }) =>
+                    classNames(
+                      isActive
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )
                   }
                 >
                   Search Users
@@ -73,9 +78,12 @@ function App() {
                   <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <MenuItem>
                       {({ focus }) => (
-                        <NavLink 
+                        <NavLink
                           to={`/users/${user.id}`}
-                          className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          className={classNames(
+                            focus ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
                         >
                           Your Profile
                         </NavLink>
@@ -83,9 +91,12 @@ function App() {
                     </MenuItem>
                     <MenuItem>
                       {({ focus }) => (
-                        <NavLink 
+                        <NavLink
                           to="/settings"
-                          className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                          className={classNames(
+                            focus ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
                         >
                           Settings
                         </NavLink>
@@ -93,10 +104,15 @@ function App() {
                     </MenuItem>
                     <MenuItem>
                       {({ focus }) => (
-                        <Form method="post" action="logout" className={classNames(focus ? 'bg-gray-100' : '', 'flex px-4 py-2 text-sm text-gray-700')}>
-                          <button className="grow text-left">
-                            Sign out
-                          </button>
+                        <Form
+                          method="post"
+                          action="logout"
+                          className={classNames(
+                            focus ? "bg-gray-100" : "",
+                            "flex px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          <button className="grow text-left">Sign out</button>
                         </Form>
                       )}
                     </MenuItem>
@@ -108,12 +124,12 @@ function App() {
         </div>
       </nav>
       <div>
-        <UserContext.Provider value={ user }>
+        <UserContext.Provider value={user}>
           <Outlet />
         </UserContext.Provider>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

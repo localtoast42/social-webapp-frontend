@@ -14,7 +14,10 @@ const Register = () => {
         <Form method="post" className="space-y-6">
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
-              <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 First Name
               </label>
               <div className="mt-2">
@@ -25,81 +28,113 @@ const Register = () => {
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors?.firstName && <span className="text-sm text-red-500">{errors.firstName.msg}</span>}
+                {errors?.firstName && (
+                  <span className="text-sm text-red-500">
+                    {errors.firstName.msg}
+                  </span>
+                )}
               </div>
             </div>
 
             <div className="sm:col-span-3">
-              <label htmlFor="lastName" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Last Name
               </label>
               <div className="mt-2">
-                <input 
-                  id="lastName" 
-                  name="lastName" 
+                <input
+                  id="lastName"
+                  name="lastName"
                   type="text"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors?.lastName && <span className="text-sm text-red-500">{errors.lastName.msg}</span>}
+                {errors?.lastName && (
+                  <span className="text-sm text-red-500">
+                    {errors.lastName.msg}
+                  </span>
+                )}
               </div>
             </div>
           </div>
 
           <div>
-            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               Username
             </label>
             <div className="mt-2">
-              <input 
+              <input
                 id="username"
                 name="username"
-                type="text" 
+                type="text"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.username && <span className="text-sm text-red-500">{errors.username.msg}</span>}
+              {errors?.username && (
+                <span className="text-sm text-red-500">
+                  {errors.username.msg}
+                </span>
+              )}
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Password
               </label>
             </div>
             <div className="mt-2">
-              <input 
-                id="password" 
-                name="password" 
+              <input
+                id="password"
+                name="password"
                 type="password"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.password && <span className="text-sm text-red-500">{errors.password.msg}</span>}
+              {errors?.password && (
+                <span className="text-sm text-red-500">
+                  {errors.password.msg}
+                </span>
+              )}
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label
+                htmlFor="confirm_password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Confirm Password
               </label>
             </div>
             <div className="mt-2">
-              <input 
-                id="confirm_password" 
-                name="confirm_password" 
+              <input
+                id="confirm_password"
+                name="confirm_password"
                 type="password"
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.confirm_password && <span className="text-sm text-red-500">{errors.confirm_password.msg}</span>}
+              {errors?.confirm_password && (
+                <span className="text-sm text-red-500">
+                  {errors.confirm_password.msg}
+                </span>
+              )}
             </div>
           </div>
 
           <div>
-            <button 
+            <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
@@ -109,7 +144,6 @@ const Register = () => {
         </Form>
       </div>
     </div>
-
 
     // <div>
     //   <div>

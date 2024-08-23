@@ -1,6 +1,6 @@
-import defaultAvatar from '../assets/defaultAvatar.svg';
-import PropTypes from 'prop-types';
-import { NavLink, useFetcher } from 'react-router-dom';
+import defaultAvatar from "../assets/defaultAvatar.svg";
+import PropTypes from "prop-types";
+import { NavLink, useFetcher } from "react-router-dom";
 
 function UserCard({ user, isFollowing }) {
   const fetcher = useFetcher();
@@ -10,15 +10,25 @@ function UserCard({ user, isFollowing }) {
   return (
     <li className="flex items-center justify-between gap-x-6 px-3 py-3">
       <NavLink to={user.url} className="flex min-w-0 gap-x-4">
-        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
+        <img
+          className="object-cover h-12 w-12 rounded-full bg-gray-100"
+          src={avatarUrl}
+          alt=""
+        />
         <div className="min-w-0 flex-auto">
-          <p className="font-semibold leading-6 text-gray-900">{user.fullName}</p>
+          <p className="font-semibold leading-6 text-gray-900">
+            {user.fullName}
+          </p>
           <p className="mt-1 truncate leading-5 text-gray-500">{`@${user.username}`}</p>
         </div>
       </NavLink>
       <div className="flex gap-x-2">
-        {!isFollowing && 
-          <fetcher.Form method="post" action={`follow/${user.id}`} className="flex">
+        {!isFollowing && (
+          <fetcher.Form
+            method="post"
+            action={`follow/${user.id}`}
+            className="flex"
+          >
             <button
               type="submit"
               name="targetId"
@@ -28,9 +38,13 @@ function UserCard({ user, isFollowing }) {
               + Follow
             </button>
           </fetcher.Form>
-        }
-        {isFollowing && 
-          <fetcher.Form method="post" action={`unfollow/${user.id}`} className="flex">
+        )}
+        {isFollowing && (
+          <fetcher.Form
+            method="post"
+            action={`unfollow/${user.id}`}
+            className="flex"
+          >
             <button
               type="submit"
               name="targetId"
@@ -40,15 +54,15 @@ function UserCard({ user, isFollowing }) {
               Unfollow
             </button>
           </fetcher.Form>
-        }
+        )}
       </div>
     </li>
-  )
+  );
 }
 
 UserCard.propTypes = {
   user: PropTypes.object.isRequired,
-  isFollowing: PropTypes.bool
-}
+  isFollowing: PropTypes.bool,
+};
 
-export default UserCard
+export default UserCard;
