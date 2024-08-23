@@ -38,7 +38,9 @@ function Comment({ comment, isCommentAuthor, isLiked }) {
             {comment.author.fullName}
           </NavLink>
           <p className="flex-none text-sm text-gray-600">
-            <time dateTime={comment.dateTime}>{comment.date}</time>
+            <time dateTime={comment.createdAt}>
+              {comment.createDateFormatted}
+            </time>
           </p>
         </div>
         <p className="mt-1 leading-6 text-gray-600">{comment.text}</p>

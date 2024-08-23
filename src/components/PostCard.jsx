@@ -38,7 +38,7 @@ function PostCard({ post, isLiked }) {
             <div className="truncate shrink text-md leading-5 text-gray-500">{`@${post.author.username}`}</div>
           </NavLink>
           <p className="whitespace-nowrap text-sm text-gray-600">
-            <time dateTime={post.dateTime}>{post.date}</time>
+            <time dateTime={post.createdAt}>{post.createDateFormatted}</time>
           </p>
         </div>
         <p className="mt-1 leading-6 text-gray-600">

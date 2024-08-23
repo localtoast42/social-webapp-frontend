@@ -62,7 +62,9 @@ function Post() {
                 </NavLink>
               </div>
               <p className="flex-none text-sm text-gray-600">
-                <time dateTime={post.dateTime}>{post.date}</time>
+                <time dateTime={post.createdAt}>
+                  {post.createDateFormatted}
+                </time>
               </p>
             </div>
           </div>
