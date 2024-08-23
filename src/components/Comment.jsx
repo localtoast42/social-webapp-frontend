@@ -78,7 +78,11 @@ function Comment({ comment, isCommentAuthor, isLiked }) {
                 method="post"
                 action={`/posts/${comment.id}/delete`}
               >
-                <button className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600">
+                <button
+                  name="parentId"
+                  value={comment.parentId}
+                  className="flex px-3 py-1 justify-center items-center rounded-lg font-semibold leading-6 text-white bg-red-500 hover:bg-red-600"
+                >
                   Delete
                 </button>
               </deleteFetcher.Form>

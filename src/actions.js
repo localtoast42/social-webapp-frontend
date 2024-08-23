@@ -252,7 +252,7 @@ export async function postEditAction({ params, request }) {
   return response;
 }
 
-export async function postDeleteAction({ params }) {
+export async function postDeleteAction({ params, request }) {
   const accessToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
 
@@ -272,6 +272,13 @@ export async function postDeleteAction({ params }) {
   }
 
   if (response.status != 200) {
+    return response;
+  }
+
+  const formData = await request.formData();
+  const parentId = formData.get("parentId");
+
+  if (parentId) {
     return response;
   }
 
