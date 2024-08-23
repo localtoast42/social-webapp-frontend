@@ -29,8 +29,6 @@ import {
   postDeleteAction,
   postLikeAction,
   commentCreateAction,
-  commentDeleteAction,
-  commentLikeAction,
   followAction,
   unfollowAction,
 } from "./actions";
@@ -120,14 +118,6 @@ const routes = [
       {
         path: "/posts/:postId/comment",
         action: commentCreateAction,
-      },
-      {
-        path: "/comments/:commentId/delete",
-        action: commentDeleteAction,
-      },
-      {
-        path: "/comments/:commentId/like",
-        action: commentLikeAction,
       },
     ],
   },
