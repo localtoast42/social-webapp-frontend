@@ -20,7 +20,7 @@ export async function userLoader() {
     localStorage.setItem("accessToken", newAccessToken);
   }
 
-  if (response.status == 401) {
+  if (response.status == 401 || response.status == 404) {
     return redirect("/login");
   }
 
