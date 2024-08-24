@@ -1,4 +1,4 @@
-import defaultAvatar from '../assets/defaultAvatar.svg';
+import defaultAvatar from "../assets/defaultAvatar.svg";
 import { useState, useContext } from "react";
 import { useFetcher, NavLink } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -16,13 +16,14 @@ export default function NewPost() {
 
   return (
     <div className="min-w-0 flex-1 flex gap-x-4 px-3">
-      <NavLink 
-        to={user.url}
-        className="flex-none self-start"
-      >
-        <img className="object-cover h-12 w-12 rounded-full bg-gray-100" src={avatarUrl} alt="" />
+      <NavLink to={user.url} className="flex-none self-start">
+        <img
+          className="object-cover h-12 w-12 rounded-full bg-gray-100"
+          src={avatarUrl}
+          alt=""
+        />
       </NavLink>
-      {!isEditable && 
+      {!isEditable && (
         <button
           type="button"
           onClick={toggleEditable}
@@ -30,10 +31,10 @@ export default function NewPost() {
         >
           + Create a new post
         </button>
-      }
+      )}
 
-      {isEditable && 
-        <fetcher.Form 
+      {isEditable && (
+        <fetcher.Form
           method="post"
           action="/posts/create"
           onSubmit={toggleEditable}
@@ -44,10 +45,9 @@ export default function NewPost() {
               rows={3}
               id="text"
               name="text"
-              defaultValue={''}
+              defaultValue={""}
               className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            >
-            </textarea>
+            ></textarea>
             <div className="py-2" aria-hidden="true">
               <div className="py-px">
                 <div className="h-9" />
@@ -73,7 +73,7 @@ export default function NewPost() {
             </div>
           </div>
         </fetcher.Form>
-      }
+      )}
     </div>
-  )
+  );
 }

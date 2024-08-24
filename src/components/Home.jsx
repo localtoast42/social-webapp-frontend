@@ -2,14 +2,14 @@ import NewPost from "./NewPost";
 import { Outlet, NavLink } from "react-router-dom";
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 function Home() {
   const tabs = [
-    { name: 'Recent', href: '/home' },
-    { name: 'Following', href: '/home/following' },
-  ]
+    { name: "Recent", href: "/home" },
+    { name: "Following", href: "/home/following" },
+  ];
 
   return (
     <div className="flex justify-center">
@@ -26,13 +26,14 @@ function Home() {
                     key={tab.name}
                     to={tab.href}
                     end
-                    className={({ isActive }) => 
+                    className={({ isActive }) =>
                       classNames(
                         isActive
-                        ? 'border-indigo-500 text-indigo-600'
-                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                      'whitespace-nowrap border-b-2 px-1 py-4 text-md font-medium',
-                      )}
+                          ? "border-indigo-500 text-indigo-600"
+                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                        "whitespace-nowrap border-b-2 px-1 py-4 text-md font-medium"
+                      )
+                    }
                   >
                     {tab.name}
                   </NavLink>
@@ -46,7 +47,7 @@ function Home() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

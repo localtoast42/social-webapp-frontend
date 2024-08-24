@@ -8,17 +8,18 @@ import ErrorPage from "./components/ErrorPage";
 import UserSearch from "./components/UserSearch";
 import UserProfile from "./components/UserProfile";
 import UserSettings from "./components/UserSettings";
-import { 
-  userLoader, 
+import {
+  userLoader,
   userProfileLoader,
   userSearchLoader,
   recentFeedLoader,
   followingFeedLoader,
   postLoader,
-  profileFeedLoader } from "./loaders";
-import { 
+  profileFeedLoader,
+} from "./loaders";
+import {
   loginAction,
-  guestLoginAction, 
+  guestLoginAction,
   logoutAction,
   registerAction,
   userUpdateAction,
@@ -28,10 +29,9 @@ import {
   postDeleteAction,
   postLikeAction,
   commentCreateAction,
-  commentDeleteAction,
-  commentLikeAction,
   followAction,
-  unfollowAction } from "./actions";
+  unfollowAction,
+} from "./actions";
 
 const routes = [
   {
@@ -47,24 +47,24 @@ const routes = [
           {
             index: true,
             element: <Feed />,
-            loader: recentFeedLoader
+            loader: recentFeedLoader,
           },
           {
             path: "following",
             element: <Feed />,
-            loader: followingFeedLoader
+            loader: followingFeedLoader,
           },
-        ]
+        ],
       },
       {
         path: "/settings",
         element: <UserSettings />,
-        loader: userLoader
+        loader: userLoader,
       },
       {
         path: "/users",
         element: <UserSearch />,
-        loader: userSearchLoader
+        loader: userSearchLoader,
       },
       {
         path: "/users/:userId",
@@ -74,81 +74,73 @@ const routes = [
           {
             index: true,
             element: <Feed />,
-            loader: profileFeedLoader
+            loader: profileFeedLoader,
           },
-        ]
+        ],
       },
       {
         path: "/users/:userId/update",
-        action: userUpdateAction
+        action: userUpdateAction,
       },
       {
         path: "/users/:userId/delete",
-        action: userDeleteAction
+        action: userDeleteAction,
       },
       {
         path: "/users/follow/:userId",
-        action: followAction
+        action: followAction,
       },
       {
         path: "/users/unfollow/:userId",
-        action: unfollowAction
+        action: unfollowAction,
       },
       {
         path: "/posts/:postId",
         element: <Post />,
-        loader: postLoader
+        loader: postLoader,
       },
       {
         path: "/posts/create",
-        action: postCreateAction
+        action: postCreateAction,
       },
       {
         path: "/posts/:postId/edit",
-        action: postEditAction
+        action: postEditAction,
       },
       {
         path: "/posts/:postId/delete",
-        action: postDeleteAction
+        action: postDeleteAction,
       },
       {
         path: "/posts/:postId/like",
-        action: postLikeAction
+        action: postLikeAction,
       },
       {
         path: "/posts/:postId/comment",
-        action: commentCreateAction
+        action: commentCreateAction,
       },
-      {
-        path: "/comments/:commentId/delete",
-        action: commentDeleteAction
-      },
-      {
-        path: "/comments/:commentId/like",
-        action: commentLikeAction
-      },
-    ]
+    ],
   },
   {
     path: "/register",
     element: <Register />,
     errorElement: <ErrorPage />,
-    action: registerAction
+    action: registerAction,
   },
   {
     path: "/login",
     element: <Login />,
     errorElement: <ErrorPage />,
-    action: loginAction
+    action: loginAction,
   },
   {
     path: "/login/guest",
-    action: guestLoginAction
+    action: guestLoginAction,
   },
   {
     path: "/logout",
-    action: logoutAction
-  }
+    action: logoutAction,
+  },
 ];
 
 export default routes;
